@@ -35,7 +35,7 @@ export function HeroSection() {
 
   return (
     <section 
-      className="relative pt-20 pb-12 md:pt-32 md:pb-24 overflow-hidden min-h-[90vh] flex items-center group cursor-crosshair touch-none"
+      className="relative pt-20 pb-12 md:pt-32 md:pb-24 overflow-hidden min-h-[90vh] flex items-center group cursor-crosshair"
       onPointerMove={handlePointerMove}
       onPointerEnter={() => setIsHovering(true)}
       onPointerLeave={() => setIsHovering(false)}
