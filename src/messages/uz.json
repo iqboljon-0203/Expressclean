@@ -179,5 +179,18 @@
   "Metadata": {
     "title": "Express Clean | Toshkentda Gilam va Mebel Yuvish Xizmati",
     "description": "Toshkentda gilam, yumshoq mebel, parda va adyollarni professional yuvish va tozalash xizmati. Bepul olib ketish va yetkazish. 100% sifat kafolati."
+  },
+  "Promo": {
+    "headline": "Ko'proq sarmoya, ko'proq foyda! 🎁",
+    "subheadline": "Katta hajmdagi buyurtmalar uchun maxsus keshbek va bonuslar.",
+    "card1_text": "50 kv.m dan oshsa",
+    "card1_highlight": "50,000 so'm Bonus!",
+    "card2_text": "100 kv.m dan oshsa",
+    "card2_highlight": "100,000 so'm Keshbek!",
+    "card3_text": "200 kv.m dan oshsa",
+    "card3_highlight": "200,000 so'm Keshbek!",
+    "card4_text": "10 ta ko'rpacha buyurtmasida",
+    "card4_highlight": "1 tasi Bepul yuviladi!",
+    "cta": "Aksiyadan foydalanish"
   }
 }

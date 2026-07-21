@@ -4,6 +4,7 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
+import { PromoSection } from "@/components/sections/PromoSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { BeforeAfterSlider } from "@/components/sections/BeforeAfterSlider";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
@@ -107,6 +108,7 @@ export default function Home() {
       <div className="relative z-10">
         <HeroSection />
         <ServicesSection />
+        <PromoSection />
         <HowItWorksSection />
         <CalculatorSection />
         <BeforeAfterSlider />
