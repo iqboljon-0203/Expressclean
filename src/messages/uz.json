@@ -2,6 +2,7 @@
   "Navbar": {
     "about": "Biz haqimizda",
     "services": "Xizmatlar",
+    "promo": "Aksiyalar",
     "reviews": "Sharhlar",
     "contact": "Aloqa"
   },
@@ -136,6 +137,7 @@
     "nav_faq": "Ko'p so'raladigan savollar",
     "nav_reviews": "Sharhlar",
     "nav_contact": "Aloqa",
+    "nav_promo": "Aksiyalar",
     "contactTitle": "Aloqa",
     "schedule": "Dush-Yak: 09:00 - 20:00",
     "address": "Toshkent sh., Yunusobod tumani",
@@ -192,5 +194,10 @@
     "card4_text": "10 ta ko'rpacha buyurtmasida",
     "card4_highlight": "1 tasi Bepul yuviladi!",
     "cta": "Aksiyadan foydalanish"
+  },
+  "SuccessPage": {
+    "title": "Arizangiz muvaffaqiyatli qabul qilindi!",
+    "message": "Tez orada mutaxassislarimiz siz bilan bog'lanib, barcha tafsilotlarni kelishib olishadi. Bizni tanlaganingiz uchun rahmat!",
+    "button": "Asosiy sahifaga qaytish"
   }
 }

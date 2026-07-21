@@ -4,13 +4,15 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { PromoSection } from "@/components/sections/PromoSection";
-import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
-import { BeforeAfterSlider } from "@/components/sections/BeforeAfterSlider";
-import { ReviewsSection } from "@/components/sections/ReviewsSection";
-import { FaqSection } from "@/components/sections/FaqSection";
-import { CalculatorSection } from "@/components/sections/CalculatorSection";
-import { ContactFormSection } from "@/components/sections/ContactFormSection";
+import dynamic from "next/dynamic";
+
+const PromoSection = dynamic(() => import("@/components/sections/PromoSection").then(m => m.PromoSection));
+const HowItWorksSection = dynamic(() => import("@/components/sections/HowItWorksSection").then(m => m.HowItWorksSection));
+const BeforeAfterSlider = dynamic(() => import("@/components/sections/BeforeAfterSlider").then(m => m.BeforeAfterSlider));
+const ReviewsSection = dynamic(() => import("@/components/sections/ReviewsSection").then(m => m.ReviewsSection));
+const FaqSection = dynamic(() => import("@/components/sections/FaqSection").then(m => m.FaqSection));
+const CalculatorSection = dynamic(() => import("@/components/sections/CalculatorSection").then(m => m.CalculatorSection));
+const ContactFormSection = dynamic(() => import("@/components/sections/ContactFormSection").then(m => m.ContactFormSection));
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -14,9 +14,10 @@ export function Navbar() {
 
   const navLinks = [
     { name: t("about"), href: "/about" },
-    { name: t("services"), href: "/#services" },
-    { name: t("reviews"), href: "/#reviews" },
-    { name: t("contact"), href: "/#contact" },
+    { name: t("services"), href: "/#xizmatlar" },
+    { name: t("promo"), href: "/#aksiya" },
+    { name: t("reviews"), href: "/#sharhlar" },
+    { name: t("contact"), href: "/#aloqa" },
   ];
 
   return (

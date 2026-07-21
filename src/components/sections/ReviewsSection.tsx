@@ -39,7 +39,7 @@ export function ReviewsSection() {
   }, []);
 
   return (
-    <section id="reviews" className="py-24 bg-gradient-to-b from-white to-blue-50/30 overflow-hidden relative">
+    <section id="sharhlar" className="py-24 bg-gradient-to-b from-white to-blue-50/30 overflow-hidden relative">
       <style>{`
         .review-track-container {
           --slide-shift: 100%;

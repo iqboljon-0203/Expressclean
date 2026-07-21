@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
 import { motion } from 'framer-motion';
@@ -23,10 +25,10 @@ export function LanguageSwitcher() {
             : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200/50'
         }`}
       >
-        <img 
-          src="https://flagcdn.com/w20/uz.png" 
-          srcSet="https://flagcdn.com/w40/uz.png 2x" 
+        <Image 
+          src="https://flagcdn.com/w40/uz.png" 
           width="16" 
+          height="12"
           alt="Uzbekistan" 
           className="rounded-[2px]" 
         />

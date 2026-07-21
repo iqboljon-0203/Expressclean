@@ -55,7 +55,7 @@ export function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden bg-gray-50/50">
+    <section id="xizmatlar" className="py-24 relative overflow-hidden bg-gray-50/50">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <motion.h2 

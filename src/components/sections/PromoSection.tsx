@@ -16,7 +16,7 @@ export function PromoSection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-amber-50 to-orange-100 relative overflow-hidden">
+    <section id="aksiya" className="py-20 bg-gradient-to-br from-amber-50 to-orange-100 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-10 left-10 w-48 h-48 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>

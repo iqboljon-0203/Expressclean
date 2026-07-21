@@ -5,12 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send, X, CheckCircle2 } from "lucide-react";
 import { RippleButton } from "@/components/ui/RippleButton";
 import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/routing";
 
 export function ContactFormSection() {
   const t = useTranslations("ContactForm");
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
 
   // Effect for custom event to open modal
   useEffect(() => {
@@ -24,8 +25,6 @@ export function ContactFormSection() {
 
   const closeForm = () => {
     setIsOpen(false);
-    // Reset state after animation finishes
-    setTimeout(() => setIsSuccess(false), 500);
   };
 
   const [name, setName] = useState("");
@@ -46,14 +45,10 @@ export function ContactFormSection() {
 
       if (!res.ok) throw new Error("Tarmoq xatosi");
       
-      setIsSuccess(true);
       setName("");
       setPhone("");
-      
-      // Auto close after 3 seconds on success
-      setTimeout(() => {
-        closeForm();
-      }, 3000);
+      closeForm();
+      router.push("/success");
     } catch (error) {
       console.error(error);
       alert(t("errorMsg"));
@@ -101,44 +96,8 @@ export function ContactFormSection() {
 
             {/* Body */}
             <div className="p-6 md:p-8 overflow-y-auto">
-              {isSuccess ? (
-                // Success Bubble Burst Animation
-                <motion.div 
-                  initial={{ scale: 0.5, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className="flex flex-col items-center justify-center py-10 text-center"
-                >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", bounce: 0.5, duration: 0.6 }}
-                    className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 relative"
-                  >
-                    <CheckCircle2 className="w-12 h-12 text-green-500 relative z-10" />
-                    {/* Confetti particles */}
-                    {[...Array(6)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ x: 0, y: 0, scale: 1, opacity: 1 }}
-                        animate={{ 
-                          x: (Math.random() - 0.5) * 150, 
-                          y: (Math.random() - 0.5) * 150,
-                          scale: 0,
-                          opacity: 0
-                        }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="absolute w-3 h-3 rounded-full bg-green-400"
-                      />
-                    ))}
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">{t("successTitle")}</h3>
-                  <p className="text-muted-foreground">
-                    {t("successDesc")}
-                  </p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                  <div>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <div>
                     <label htmlFor="name" className="text-sm font-semibold text-foreground mb-2 block">{t("nameLabel")}</label>
                     <input
                       type="text"
@@ -189,7 +148,6 @@ export function ContactFormSection() {
                     {t("policyText")}
                   </p>
                 </form>
-              )}
             </div>
           </motion.div>
         </div>

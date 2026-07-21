@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 export function Footer() {
   const t = useTranslations("Footer");
   return (
-    <footer id="contact" className="bg-foreground text-white py-12 pb-24 md:pb-12">
+    <footer id="aloqa" className="bg-foreground text-white py-12 pb-24 md:pb-12">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Column 1: Logo & Text */}
         <div className="lg:pr-4">
@@ -22,11 +22,11 @@ export function Footer() {
         <div>
           <h4 className="text-lg font-semibold mb-4">{t("navTitle")}</h4>
           <ul className="space-y-3">
-            <li><Link href="#about" className="text-gray-300 hover:text-white transition-colors">{t("nav_about")}</Link></li>
-            <li><Link href="#services" className="text-gray-300 hover:text-white transition-colors">{t("nav_services")}</Link></li>
-            <li><Link href="#faq" className="text-gray-300 hover:text-white transition-colors">{t("nav_faq")}</Link></li>
-            <li><Link href="#reviews" className="text-gray-300 hover:text-white transition-colors">{t("nav_reviews")}</Link></li>
-            <li><Link href="#contact" className="text-gray-300 hover:text-white transition-colors">{t("nav_contact")}</Link></li>
+            <li><Link href="/about" className="text-gray-300 hover:text-white transition-colors">{t("nav_about")}</Link></li>
+            <li><Link href="/#xizmatlar" className="text-gray-300 hover:text-white transition-colors">{t("nav_services")}</Link></li>
+            <li><Link href="/#faq" className="text-gray-300 hover:text-white transition-colors">{t("nav_faq")}</Link></li>
+            <li><Link href="/#sharhlar" className="text-gray-300 hover:text-white transition-colors">{t("nav_reviews")}</Link></li>
+            <li><Link href="/#aloqa" className="text-gray-300 hover:text-white transition-colors">{t("nav_contact")}</Link></li>
           </ul>
         </div>
 

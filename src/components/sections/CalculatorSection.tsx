@@ -33,7 +33,7 @@ export function CalculatorSection() {
   });
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section id="kalkulyator" className="py-24 bg-white relative overflow-hidden">
       {/* Soft radial background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-50/50 via-white to-white -z-10" />
 
