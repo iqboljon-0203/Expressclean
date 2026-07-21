@@ -3,24 +3,26 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function FaqSection() {
+  const t = useTranslations("Faq");
   const faqs = [
     {
-      question: "Jarayon qancha vaqt oladi?",
-      answer: "Odatda gilamlarni olib ketganimizdan so'ng 1-3 kun ichida toza va quruq holatda yetkazib beramiz. Yumshoq mebellarni esa uyingizning o'zida 1-2 soatda tozalab beramiz.",
+      question: t("q1"),
+      answer: t("a1"),
     },
     {
-      question: "Olib ketish va yetkazib berish bepulmi?",
-      answer: "Ha, Toshkent shahri ichida olib ketish va yetkazib berish xizmatimiz mutlaqo bepul.",
+      question: t("q2"),
+      answer: t("a2"),
     },
     {
-      question: "Qanday vositalardan foydalanasiz?",
-      answer: "Biz faqat yuqori sifatli, ekologik toza va inson salomatligi (hamda uy hayvonlari) uchun zararsiz bo'lgan maxsus gipoallergen vositalardan foydalanamiz.",
+      question: t("q3"),
+      answer: t("a3"),
     },
     {
-      question: "Qanday to'lov usullari mavjud?",
-      answer: "Naqd pul, Click, Payme va boshqa qulay usullar orqali to'lov qilishingiz mumkin.",
+      question: t("q4"),
+      answer: t("a4"),
     },
   ];
 
@@ -30,7 +32,7 @@ export function FaqSection() {
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4 max-w-3xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Ko'p beriladigan savollar</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{t("title")}</h2>
         </div>
 
         <div className="space-y-4">

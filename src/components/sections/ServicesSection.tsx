@@ -5,48 +5,50 @@ import { Sparkles, Home, Sofa, SplitSquareHorizontal, ArrowRight, BedDouble, Lay
 import Link from "next/link";
 import Image from "next/image";
 import { RippleButton } from "@/components/ui/RippleButton";
+import { useTranslations } from "next-intl";
 
 export function ServicesSection() {
+  const t = useTranslations("Services");
   const services = [
     {
-      title: "Gilam yuvish",
-      price: "12,000 so'm / m²",
-      description: "Maxsus sexlarda chuqur yuvish, quritish va maxsus o'rab yetkazib berish xizmati.",
+      title: t("items.item1.title"),
+      price: t("items.item1.price"),
+      description: t("items.item1.desc"),
       icon: <SplitSquareHorizontal className="w-6 h-6 text-primary" />,
       image: "/service1_v3.png",
     },
     {
-      title: "Joyida gilam yuvish",
-      price: "16,000 so'm / m²",
-      description: "Gilamlaringizni o'z joyidan jildirmay maxsus uskunalar yordamida tozalab beramiz.",
+      title: t("items.item2.title"),
+      price: t("items.item2.price"),
+      description: t("items.item2.desc"),
       icon: <Home className="w-6 h-6 text-primary" />,
       image: "/service2.png",
     },
     {
-      title: "Yumshoq mebel",
-      price: "50,000 - 80,000 so'm",
-      description: "Narx 1 joy (o'tiradigan o'rin) uchun. Divan va kreslolarni chuqur tozalash.",
+      title: t("items.item3.title"),
+      price: t("items.item3.price"),
+      description: t("items.item3.desc"),
       icon: <Sofa className="w-6 h-6 text-primary" />,
       image: "/service3.png",
     },
     {
-      title: "Ko'rpachalar tozalash",
-      price: "15,000 so'm / 1 metr",
-      description: "Ko'rpachalarni chang, kir va hidlardan to'liq tozalab, yangidek holatga keltiramiz.",
+      title: t("items.item4.title"),
+      price: t("items.item4.price"),
+      description: t("items.item4.desc"),
       icon: <Layers className="w-6 h-6 text-primary" />,
       image: "/service4.png",
     },
     {
-      title: "Adiyol yuvish",
-      price: "50,000 so'm dan",
-      description: "1 kishilik adiyol - 50,000 so'm. 2 kishilik adiyol - 80,000 so'm.",
+      title: t("items.item5.title"),
+      price: t("items.item5.price"),
+      description: t("items.item5.desc"),
       icon: <BedDouble className="w-6 h-6 text-primary" />,
       image: "/service5.png",
     },
     {
-      title: "Pardalar yuvish",
-      price: "25,000 so'm / 1 metr",
-      description: "Nafis matolarga zarar yetkazmagan holda ehtiyotkorlik bilan tozalash va dazmollash.",
+      title: t("items.item6.title"),
+      price: t("items.item6.price"),
+      description: t("items.item6.desc"),
       icon: <Sparkles className="w-6 h-6 text-primary" />,
       image: "/service6.png",
     },
@@ -62,7 +64,7 @@ export function ServicesSection() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight"
           >
-            Bizning Xizmatlarimiz va Narxlar
+            {t("title")}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -71,7 +73,7 @@ export function ServicesSection() {
             transition={{ delay: 0.1 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Har bir xizmatimiz uchun eng yuqori sifat va tozalikni kafolatlaymiz.
+            {t("subtitle")}
           </motion.p>
         </div>
 
@@ -132,7 +134,7 @@ export function ServicesSection() {
                   }}
                 >
                   <RippleButton className="w-full bg-gray-50 text-foreground py-3 rounded-xl hover:bg-primary hover:text-white transition-colors border border-gray-100 shadow-sm flex items-center justify-center group/btn">
-                    <span className="font-semibold">Buyurtma berish</span> 
+                    <span className="font-semibold">{t("cta")}</span> 
                     <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
                   </RippleButton>
                 </a>

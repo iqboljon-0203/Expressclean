@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { motion, useSpring, useTransform } from "framer-motion";
 import { Ruler, Calculator } from "lucide-react";
 import { RippleButton } from "@/components/ui/RippleButton";
+import { useTranslations } from "next-intl";
 
 export function CalculatorSection() {
+  const t = useTranslations("Calculator");
   const [width, setWidth] = useState(2);
   const [length, setLength] = useState(3);
   const pricePerSqm = 12000;
@@ -44,10 +46,10 @@ export function CalculatorSection() {
             className="text-3xl md:text-5xl font-bold text-foreground mb-4 flex items-center justify-center gap-3"
           >
             <Calculator className="w-8 h-8 text-primary" />
-            Narx Kalkulyatori
+            {t("title")}
           </motion.h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Gilamingiz o'lchamlarini kiriting va narxni shu zahotiyoq bilib oling!
+            {t("subtitle")}
           </p>
         </div>
 
@@ -60,7 +62,7 @@ export function CalculatorSection() {
               <div className="flex justify-between items-end mb-4">
                 <label className="text-lg font-semibold text-foreground flex items-center gap-2">
                   <Ruler className="w-5 h-5 text-primary" />
-                  Eni (Kengligi)
+                  {t("width")}
                 </label>
                 <span className="text-2xl font-bold text-primary">{width} m</span>
               </div>
@@ -79,7 +81,7 @@ export function CalculatorSection() {
               <div className="flex justify-between items-end mb-4">
                 <label className="text-lg font-semibold text-foreground flex items-center gap-2">
                   <Ruler className="w-5 h-5 text-primary rotate-90" />
-                  Bo'yi (Uzunligi)
+                  {t("length")}
                 </label>
                 <span className="text-2xl font-bold text-primary">{length} m</span>
               </div>
@@ -95,21 +97,21 @@ export function CalculatorSection() {
             </div>
 
             <div className="bg-primary/5 rounded-2xl p-6 border border-primary/10">
-              <p className="text-sm text-muted-foreground mb-1">Taxminiy hisob-kitob:</p>
+              <p className="text-sm text-muted-foreground mb-1">{t("estimateLabel")}</p>
               <div className="flex items-baseline gap-2">
                 <motion.span className="text-4xl md:text-5xl font-extrabold text-foreground tracking-tight">
                   {displayTotal}
                 </motion.span>
-                <span className="text-xl font-bold text-muted-foreground">so'm</span>
+                <span className="text-xl font-bold text-muted-foreground">{t("currency")}</span>
               </div>
               <p className="text-xs text-primary mt-2 font-medium">
-                * 1 m² uchun 12 000 so'm (Gilam yuvish)
+                {t("note")}
               </p>
             </div>
 
             <a href="#contact" className="block mt-8">
               <RippleButton className="w-full bg-primary text-white py-4 rounded-xl text-lg font-bold shadow-premium hover:shadow-premium-hover">
-                Shu narxda buyurtma berish
+                {t("orderBtn")}
               </RippleButton>
             </a>
           </div>

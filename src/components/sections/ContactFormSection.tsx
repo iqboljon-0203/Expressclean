@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, X, CheckCircle2 } from "lucide-react";
 import { RippleButton } from "@/components/ui/RippleButton";
+import { useTranslations } from "next-intl";
 
 export function ContactFormSection() {
+  const t = useTranslations("ContactForm");
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -54,7 +56,7 @@ export function ContactFormSection() {
       }, 3000);
     } catch (error) {
       console.error(error);
-      alert("Xatolik yuz berdi. Iltimos keyinroq qayta urinib ko'ring.");
+      alert(t("errorMsg"));
     } finally {
       setIsSubmitting(false);
     }
@@ -91,9 +93,9 @@ export function ContactFormSection() {
               >
                 <X className="w-6 h-6" />
               </button>
-              <h2 className="text-2xl font-bold mb-2">Tozalik sari birinchi qadam!</h2>
+              <h2 className="text-2xl font-bold mb-2">{t("title")}</h2>
               <p className="text-white/80 text-sm">
-                Raqamingizni qoldiring, 5 daqiqa ichida qo'ng'iroq qilamiz.
+                {t("subtitle")}
               </p>
             </div>
 
@@ -129,27 +131,27 @@ export function ContactFormSection() {
                       />
                     ))}
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Arizangiz qabul qilindi!</h3>
+                  <h3 className="text-2xl font-bold text-foreground mb-2">{t("successTitle")}</h3>
                   <p className="text-muted-foreground">
-                    Tez orada menejerimiz siz bilan bog'lanadi. Rahmat!
+                    {t("successDesc")}
                   </p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                   <div>
-                    <label htmlFor="name" className="text-sm font-semibold text-foreground mb-2 block">Ismingiz</label>
+                    <label htmlFor="name" className="text-sm font-semibold text-foreground mb-2 block">{t("nameLabel")}</label>
                     <input
                       type="text"
                       id="name"
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="Masalan: Sardor"
+                      placeholder={t("namePlaceholder")}
                       className="w-full px-5 py-4 rounded-xl border-2 border-muted bg-muted/20 focus:bg-white focus:border-primary focus:outline-none transition-colors text-foreground font-medium"
                     />
                   </div>
                   <div>
-                    <label htmlFor="phone" className="text-sm font-semibold text-foreground mb-2 block">Telefon raqamingiz</label>
+                    <label htmlFor="phone" className="text-sm font-semibold text-foreground mb-2 block">{t("phoneLabel")}</label>
                     <div className="relative flex items-center">
                       <span className="absolute left-5 text-foreground font-medium">+998</span>
                       <input
@@ -177,14 +179,14 @@ export function ContactFormSection() {
                       />
                     ) : (
                       <>
-                        Arizani jo'natish
+                        {t("submitBtn")}
                         <Send className="w-5 h-5" />
                       </>
                     )}
                   </RippleButton>
                   
                   <p className="text-center text-xs text-muted-foreground mt-2">
-                    Tugmani bosish orqali siz maxfiylik siyosatiga rozi bo'lasiz.
+                    {t("policyText")}
                   </p>
                 </form>
               )}

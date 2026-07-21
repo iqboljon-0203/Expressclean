@@ -2,27 +2,29 @@
 
 import { motion } from "framer-motion";
 import { ClipboardEdit, Truck, Droplets, CheckCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function HowItWorksSection() {
+  const t = useTranslations("HowItWorks");
   const steps = [
     {
-      title: "Ariza qoldirasiz",
-      description: "Sayt orqali ariza qoldirasiz yoki bizga qo'ng'iroq qilasiz.",
+      title: t("steps.step1.title"),
+      description: t("steps.step1.desc"),
       icon: <ClipboardEdit className="w-8 h-8 text-white" />,
     },
     {
-      title: "Bepul olib ketamiz",
-      description: "Bizning kurierlar gilamingizni bepul uyingizdan olib ketishadi.",
+      title: t("steps.step2.title"),
+      description: t("steps.step2.desc"),
       icon: <Truck className="w-8 h-8 text-white" />,
     },
     {
-      title: "Chuqur tozalash",
-      description: "Maxsus uskunalar va ekologik toza vositalar yordamida yuviladi.",
+      title: t("steps.step3.title"),
+      description: t("steps.step3.desc"),
       icon: <Droplets className="w-8 h-8 text-white" />,
     },
     {
-      title: "Yetkazib beramiz",
-      description: "Toza va quruq holatda, yangidek qilib uyingizga yetkazamiz.",
+      title: t("steps.step4.title"),
+      description: t("steps.step4.desc"),
       icon: <CheckCircle className="w-8 h-8 text-white" />,
     },
   ];
@@ -31,9 +33,9 @@ export function HowItWorksSection() {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Qanday ishlaymiz?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{t("title")}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Jarayon juda oddiy va qulay. Biz sizning vaqtingizni qadrlaymiz.
+            {t("subtitle")}
           </p>
         </div>
 

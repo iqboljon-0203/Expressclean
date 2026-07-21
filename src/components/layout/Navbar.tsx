@@ -5,15 +5,18 @@ import { Menu, X, PhoneCall } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("Navbar");
 
   const navLinks = [
-    { name: "Biz haqimizda", href: "/about" },
-    { name: "Xizmatlar", href: "/#services" },
-    { name: "Sharhlar", href: "/#reviews" },
-    { name: "Aloqa", href: "/#contact" },
+    { name: t("about"), href: "/about" },
+    { name: t("services"), href: "/#services" },
+    { name: t("reviews"), href: "/#reviews" },
+    { name: t("contact"), href: "/#contact" },
   ];
 
   return (
@@ -30,16 +33,13 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
+          <LanguageSwitcher />
           <a
-            href="#contact"
+            href="tel:+998334060006"
             className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full font-medium hover:bg-primary-hover transition-colors shadow-sm"
-            onClick={(e) => {
-              e.preventDefault();
-              window.dispatchEvent(new CustomEvent('open-contact-modal'));
-            }}
           >
             <PhoneCall className="w-4 h-4" />
-            Buyurtma berish
+            +998 33 406 0006
           </a>
         </nav>
 
@@ -74,17 +74,16 @@ export function Navbar() {
                 </Link>
               ))}
               <a
-                href="#contact"
-                className="flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 rounded-xl font-medium hover:bg-primary-hover transition-colors shadow-sm mt-4"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsOpen(false);
-                  window.dispatchEvent(new CustomEvent('open-contact-modal'));
-                }}
+                href="tel:+998334060006"
+                className="flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 rounded-xl font-medium hover:bg-primary-hover transition-colors shadow-sm mt-4 mb-2"
+                onClick={() => setIsOpen(false)}
               >
                 <PhoneCall className="w-5 h-5" />
-                Buyurtma berish
+                +998 33 406 0006
               </a>
+              <div className="flex justify-center pb-4">
+                <LanguageSwitcher />
+              </div>
             </div>
           </motion.div>
         )}

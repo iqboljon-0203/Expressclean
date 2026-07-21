@@ -6,12 +6,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { RippleButton } from "@/components/ui/RippleButton";
+import { useTranslations } from "next-intl";
 
 export function HeroSection() {
+  const t = useTranslations("Hero");
+
   const badges = [
-    { icon: <Users className="w-5 h-5 text-accent" />, text: "1000+ mijozlar" },
-    { icon: <Truck className="w-5 h-5 text-accent" />, text: "Bepul olib ketish" },
-    { icon: <Sparkles className="w-5 h-5 text-accent" />, text: "Ekologik toza" },
+    { icon: <Users className="w-5 h-5 text-accent" />, text: t("badge1") },
+    { icon: <Truck className="w-5 h-5 text-accent" />, text: t("badge2") },
+    { icon: <Sparkles className="w-5 h-5 text-accent" />, text: t("badge3") },
   ];
 
   const mouseX = useMotionValue(0);
@@ -75,16 +78,16 @@ export function HeroSection() {
           transition={{ duration: 0.5 }}
         >
           <span className="inline-block py-1.5 px-3 md:px-4 rounded-full bg-white/70 backdrop-blur-md text-primary text-xs md:text-sm font-semibold mb-6 shadow-sm border border-white/50">
-            ✨ Interaktiv Tozalash: Ekranni silab ko'ring!
+            {t("interactive")}
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground tracking-tight leading-[1.15] md:leading-[1.1] mb-4 md:mb-6 drop-shadow-sm">
-            Toshkentda gilam va yumshoq mebellarni <br className="hidden md:block"/>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground tracking-tight leading-[1.15] md:leading-[1.1] mb-4 md:mb-6 drop-shadow-sm break-words hyphens-auto">
+            {t("titleLine1")} <br className="hidden md:block"/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-              professional tozalash
+              {t("titleLine2")}
             </span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-foreground/80 font-medium mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-sm bg-white/40 md:bg-white/30 backdrop-blur-sm rounded-2xl p-3 md:p-4 border border-white/40">
-            1-3 kun ichida bepul olib ketib, xuddi hozir tozalaganingizdek yangidek qilib yetkazib beramiz. Sifatga kafolat!
+            {t("subtitle")}
           </p>
         </motion.div>
 
@@ -103,7 +106,7 @@ export function HeroSection() {
             }}
           >
             <RippleButton className="px-8 py-4 text-base font-bold text-white bg-primary rounded-full hover:bg-primary-hover shadow-premium hover:shadow-premium-hover transition-all duration-300">
-              Buyurtma berish
+              {t("cta")}
               <ArrowRight className="ml-2 w-5 h-5" />
             </RippleButton>
           </a>

@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, MapPin, Clock } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function Footer() {
+  const t = useTranslations("Footer");
   return (
     <footer id="contact" className="bg-foreground text-white py-12 pb-24 md:pb-12">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -12,25 +14,25 @@ export function Footer() {
             <Image src="/logo.png" alt="Express Clean" width={180} height={50} className="object-contain h-10 w-auto brightness-0 invert" />
           </div>
           <p className="text-gray-400 text-sm leading-relaxed">
-            Toshkentda gilam va yumshoq mebellarni professional tozalash xizmati. Sifat va tozalik kafolati.
+            {t("description")}
           </p>
         </div>
         
         {/* Column 2: Navigation */}
         <div>
-          <h4 className="text-lg font-semibold mb-4">Navigatsiya</h4>
+          <h4 className="text-lg font-semibold mb-4">{t("navTitle")}</h4>
           <ul className="space-y-3">
-            <li><Link href="#about" className="text-gray-300 hover:text-white transition-colors">Biz haqimizda</Link></li>
-            <li><Link href="#services" className="text-gray-300 hover:text-white transition-colors">Xizmatlar va narxlar</Link></li>
-            <li><Link href="#faq" className="text-gray-300 hover:text-white transition-colors">Ko'p so'raladigan savollar</Link></li>
-            <li><Link href="#reviews" className="text-gray-300 hover:text-white transition-colors">Sharhlar</Link></li>
-            <li><Link href="#contact" className="text-gray-300 hover:text-white transition-colors">Aloqa</Link></li>
+            <li><Link href="#about" className="text-gray-300 hover:text-white transition-colors">{t("nav_about")}</Link></li>
+            <li><Link href="#services" className="text-gray-300 hover:text-white transition-colors">{t("nav_services")}</Link></li>
+            <li><Link href="#faq" className="text-gray-300 hover:text-white transition-colors">{t("nav_faq")}</Link></li>
+            <li><Link href="#reviews" className="text-gray-300 hover:text-white transition-colors">{t("nav_reviews")}</Link></li>
+            <li><Link href="#contact" className="text-gray-300 hover:text-white transition-colors">{t("nav_contact")}</Link></li>
           </ul>
         </div>
 
         {/* Column 3: Contact */}
         <div>
-          <h4 className="text-lg font-semibold mb-4">Aloqa</h4>
+          <h4 className="text-lg font-semibold mb-4">{t("contactTitle")}</h4>
           <ul className="space-y-4">
             <li>
               <a href="tel:+998948500006" className="flex items-center text-gray-300 hover:text-white transition-colors">
@@ -40,18 +42,18 @@ export function Footer() {
             </li>
             <li className="flex items-start text-gray-300">
               <Clock className="w-5 h-5 mr-3 text-secondary shrink-0 mt-0.5" />
-              <span>Dush-Yak: 09:00 - 20:00</span>
+              <span>{t("schedule")}</span>
             </li>
             <li className="flex items-start text-gray-300">
               <MapPin className="w-5 h-5 mr-3 text-secondary shrink-0 mt-0.5" />
-              <span>Toshkent sh., Yunusobod tumani</span>
+              <span>{t("address")}</span>
             </li>
           </ul>
         </div>
 
         {/* Column 4: Socials */}
         <div>
-          <h4 className="text-lg font-semibold mb-4">Ijtimoiy Tarmoqlar</h4>
+          <h4 className="text-lg font-semibold mb-4">{t("socialTitle")}</h4>
           <div className="flex gap-4">
             {/* Instagram */}
             <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
@@ -70,8 +72,10 @@ export function Footer() {
       </div>
       
       <div className="container mx-auto px-4 mt-12 pt-6 border-t border-white/10 text-gray-400 text-sm flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-        <p>&copy; {new Date().getFullYear()} Express Clean. Barcha huquqlar himoyalangan.</p>
-        <p>Sayt <a href="https://dreamtech.uz" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors font-semibold">Dream Tech</a> tomonidan ishlab chiqilgan.</p>
+        <p>&copy; {new Date().getFullYear()} {t("copyright")}</p>
+        <p>{t.rich("developedBy", {
+          link: (chunks) => <a href="https://dreamtech.uz" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors font-semibold">{chunks}</a>
+        })}</p>
       </div>
     </footer>
   );

@@ -4,8 +4,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MoveHorizontal } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export function BeforeAfterSlider() {
+  const t = useTranslations("BeforeAfter");
   const [sliderPosition, setSliderPosition] = useState(50);
 
   const handleDrag = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
@@ -26,9 +28,9 @@ export function BeforeAfterSlider() {
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Oldin va Keyin</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{t("title")}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Bizning ishimiz sifati bilan tanishing. Natija so'zsiz gapiradi.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -80,10 +82,10 @@ export function BeforeAfterSlider() {
             
             {/* Labels */}
             <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium z-20">
-              Oldin
+              {t("before")}
             </div>
             <div className="absolute top-4 right-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium z-20">
-              Keyin
+              {t("after")}
             </div>
           </div>
         </motion.div>

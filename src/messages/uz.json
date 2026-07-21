@@ -1,0 +1,183 @@
+{
+  "Navbar": {
+    "about": "Biz haqimizda",
+    "services": "Xizmatlar",
+    "reviews": "Sharhlar",
+    "contact": "Aloqa"
+  },
+  "Hero": {
+    "badge1": "1000+ mijozlar",
+    "badge2": "Bepul olib ketish",
+    "badge3": "Ekologik toza",
+    "interactive": "✨ Interaktiv Tozalash: Ekranni silab ko'ring!",
+    "titleLine1": "Toshkentda gilam va yumshoq mebellarni",
+    "titleLine2": "professional tozalash",
+    "subtitle": "1-3 kun ichida bepul olib ketib, xuddi hozir tozalaganingizdek yangidek qilib yetkazib beramiz. Sifatga kafolat!",
+    "cta": "Buyurtma berish"
+  },
+  "Services": {
+    "title": "Bizning Xizmatlarimiz va Narxlar",
+    "subtitle": "Har bir xizmatimiz uchun eng yuqori sifat va tozalikni kafolatlaymiz.",
+    "cta": "Buyurtma berish",
+    "items": {
+      "item1": {
+        "title": "Gilam yuvish",
+        "price": "12,000 so'm / m²",
+        "desc": "Maxsus sexlarda chuqur yuvish, quritish va maxsus o'rab yetkazib berish xizmati."
+      },
+      "item2": {
+        "title": "Joyida gilam yuvish",
+        "price": "16,000 so'm / m²",
+        "desc": "Gilamlaringizni o'z joyidan jildirmay maxsus uskunalar yordamida tozalab beramiz."
+      },
+      "item3": {
+        "title": "Yumshoq mebel",
+        "price": "50,000 - 80,000 so'm",
+        "desc": "Narx 1 joy (o'tiradigan o'rin) uchun. Divan va kreslolarni chuqur tozalash."
+      },
+      "item4": {
+        "title": "Ko'rpachalar tozalash",
+        "price": "15,000 so'm / 1 metr",
+        "desc": "Ko'rpachalarni chang, kir va hidlardan to'liq tozalab, yangidek holatga keltiramiz."
+      },
+      "item5": {
+        "title": "Adiyol yuvish",
+        "price": "50,000 so'm dan",
+        "desc": "1 kishilik adiyol - 50,000 so'm. 2 kishilik adiyol - 80,000 so'm."
+      },
+      "item6": {
+        "title": "Pardalar yuvish",
+        "price": "25,000 so'm / 1 metr",
+        "desc": "Nafis matolarga zarar yetkazmagan holda ehtiyotkorlik bilan tozalash va dazmollash."
+      }
+    }
+  },
+  "HowItWorks": {
+    "title": "Qanday ishlaymiz?",
+    "subtitle": "Jarayon juda oddiy va qulay. Biz sizning vaqtingizni qadrlaymiz.",
+    "steps": {
+      "step1": {
+        "title": "Ariza qoldirasiz",
+        "desc": "Sayt orqali ariza qoldirasiz yoki bizga qo'ng'iroq qilasiz."
+      },
+      "step2": {
+        "title": "Bepul olib ketamiz",
+        "desc": "Bizning kurierlar gilamingizni bepul uyingizdan olib ketishadi."
+      },
+      "step3": {
+        "title": "Chuqur tozalash",
+        "desc": "Maxsus uskunalar va ekologik toza vositalar yordamida yuviladi."
+      },
+      "step4": {
+        "title": "Yetkazib beramiz",
+        "desc": "Toza va quruq holatda, yangidek qilib uyingizga yetkazamiz."
+      }
+    }
+  },
+  "Calculator": {
+    "title": "Narx Kalkulyatori",
+    "subtitle": "Gilamingiz o'lchamlarini kiriting va narxni shu zahotiyoq bilib oling!",
+    "width": "Eni (Kengligi)",
+    "length": "Bo'yi (Uzunligi)",
+    "estimateLabel": "Taxminiy hisob-kitob:",
+    "currency": "so'm",
+    "note": "* 1 m² uchun 12 000 so'm (Gilam yuvish)",
+    "orderBtn": "Shu narxda buyurtma berish"
+  },
+  "BeforeAfter": {
+    "title": "Oldin va Keyin",
+    "subtitle": "Bizning ishimiz sifati bilan tanishing. Natija so'zsiz gapiradi.",
+    "before": "Oldin",
+    "after": "Keyin"
+  },
+  "Reviews": {
+    "title": "Mijozlarimiz fikrlari",
+    "subtitle": "Bizning eng katta yutug'imiz - mamnun mijozlarimiz.",
+    "verified": "Tasdiqlangan mijoz",
+    "r1_name": "Shahnoza R.",
+    "r1_review": "Gilamimizdagi eski dog'larni ketkizishdi, raxmat! Juda tez va sifatli ishlasharkan.",
+    "r2_name": "Aziz T.",
+    "r2_review": "Yumshoq mebellarim yangidek bo'lib qoldi. Hidlari ham juda yoqimli. Tavsiya qilaman!",
+    "r3_name": "Malika K.",
+    "r3_review": "Servis a'lo darajada. O'zlari olib ketib, 2 kunda top-toza qilib qaytarib kelishdi.",
+    "r4_name": "Rustam B.",
+    "r4_review": "Ofisimizdagi barcha stullardagi dog'larni tozalashdi. Narxlari ham hamyonbop ekan.",
+    "r5_name": "Nargiza A.",
+    "r5_review": "Matraslarimizni tozalashga bergan edik, xuddi yangi sotib olgandek bo'lib qaytdi. Kattakon rahmat!"
+  },
+  "Faq": {
+    "title": "Ko'p beriladigan savollar",
+    "q1": "Jarayon qancha vaqt oladi?",
+    "a1": "Odatda gilamlarni olib ketganimizdan so'ng 1-3 kun ichida toza va quruq holatda yetkazib beramiz. Yumshoq mebellarni esa uyingizning o'zida 1-2 soatda tozalab beramiz.",
+    "q2": "Olib ketish va yetkazib berish bepulmi?",
+    "a2": "Ha, Toshkent shahri ichida olib ketish va yetkazib berish xizmatimiz mutlaqo bepul.",
+    "q3": "Qanday vositalardan foydalanasiz?",
+    "a3": "Biz faqat yuqori sifatli, ekologik toza va inson salomatligi (hamda uy hayvonlari) uchun zararsiz bo'lgan maxsus gipoallergen vositalardan foydalanamiz.",
+    "q4": "Qanday to'lov usullari mavjud?",
+    "a4": "Naqd pul, Click, Payme va boshqa qulay usullar orqali to'lov qilishingiz mumkin."
+  },
+  "ContactForm": {
+    "title": "Tozalik sari birinchi qadam!",
+    "subtitle": "Raqamingizni qoldiring, 5 daqiqa ichida qo'ng'iroq qilamiz.",
+    "successTitle": "Arizangiz qabul qilindi!",
+    "successDesc": "Tez orada menejerimiz siz bilan bog'lanadi. Rahmat!",
+    "errorMsg": "Xatolik yuz berdi. Iltimos keyinroq qayta urinib ko'ring.",
+    "nameLabel": "Ismingiz",
+    "namePlaceholder": "Masalan: Sardor",
+    "phoneLabel": "Telefon raqamingiz",
+    "submitBtn": "Arizani jo'natish",
+    "policyText": "Tugmani bosish orqali siz maxfiylik siyosatiga rozi bo'lasiz."
+  },
+  "Footer": {
+    "description": "Toshkentda gilam va yumshoq mebellarni professional tozalash xizmati. Sifat va tozalik kafolati.",
+    "navTitle": "Navigatsiya",
+    "nav_about": "Biz haqimizda",
+    "nav_services": "Xizmatlar va narxlar",
+    "nav_faq": "Ko'p so'raladigan savollar",
+    "nav_reviews": "Sharhlar",
+    "nav_contact": "Aloqa",
+    "contactTitle": "Aloqa",
+    "schedule": "Dush-Yak: 09:00 - 20:00",
+    "address": "Toshkent sh., Yunusobod tumani",
+    "socialTitle": "Ijtimoiy Tarmoqlar",
+    "copyright": "Express Clean. Barcha huquqlar himoyalangan.",
+    "developedBy": "Sayt <link>Dream Tech</link> tomonidan ishlab chiqilgan."
+  },
+  "About": {
+    "title": "Biz haqimizda",
+    "p1": "<strong class=\"text-foreground\">Express Clean</strong> - Toshkentdagi professional tozalash kompaniyasi, gilam, yumshoq mebel, parda va uy to'qimachilik mahsulotlarini chuqur tozalashga ixtisoslashgan. Biz xususiy mijozlar bilan ham, shuningdek, barqaror sifat, ehtiyotkorlik va muddatlarga rioya qilish muhim bo'lgan ofislar, do'konlar va boshqa tashkilotlar bilan ham ishlaymiz.",
+    "p2": "Ish jarayonida biz zamonaviy ekstraktor mashinalaridan, nozik yuvish vositalaridan va murakkab ifloslanishlarni: chang, ichimlik izlari, maishiy dog'lar va yoqimsiz hidlarni ketkazish bo'yicha sinovdan o'tgan texnologiyalardan foydalanamiz. Rangni, tola tuzilishini va mahsulotning tashqi ko'rinishini saqlab qolish uchun har bir material turiga alohida ishlov berish rejimini tanlaymiz.",
+    "p3": "Bizning maqsadimiz - mijoz uchun xizmatni maksimal darajada qulay qilish: shahar bo'ylab bepul olib ketish va yetkazib berish, narxni shaffof hisoblash, muddatlarni oldindan kelishish va buyurtmani qaytarishdan oldin sifat nazorati. Yo'lga qo'yilgan jarayon tufayli siz ortiqcha tashvishsiz, kundalik foydalanish uchun toza, yangi va xavfsiz mahsulotlarni olasiz.",
+    "li1": "1000 dan ortiq bajarilgan buyurtmalar va doimiy mijozlar bazasi",
+    "li2": "Har qanday hajmdagi xususiy va korporativ buyurtmalar bilan ishlaymiz",
+    "li3": "Yashirin to'lovlarsiz aniq narxlar va ish boshlanishidan oldin shaffof smeta",
+    "li4": "Har bir buyurtma bo'yicha natija kafolati va tezkor aloqa",
+    "badge1": "CHUQR<br>TOZALIK",
+    "badge2": "XAVFSIZ VA<br>EKOLOGIK",
+    "badge3": "TEZ VA<br>O'Z VAQTIDA",
+    "badge4": "SIFATGA<br>KAFOLAT",
+    "cardTitle1": "GILAMLARINGIZ <span class=\"text-primary\">+</span><br>",
+    "cardTitle2": "TOZA, SIFATLI VA<br>",
+    "cardTitle3": "XAVFSIZ QO'LLARDA!",
+    "contactLabel": "Biz bilan bog'laning:",
+    "locationLabel1": "Toshkent shahrida",
+    "locationLabel2": "XIZMAT KO'RSATAMIZ",
+    "strip1": "PROFESSIONAL<br>USKUNALAR",
+    "strip2": "MAXSUS YUVISH<br>VOSITALARI",
+    "strip3": "GIGIYENA VA<br>XAVFSIZLIK",
+    "strip4": "UYDAN OLIB<br>KETISH XIZMATI",
+    "box1Title": "Natija kafolati",
+    "box1Desc": "Agar natija sizni qoniqtirmasa — qayta tozalab beramiz yoki pulingizni qaytaramiz.",
+    "box2Title": "Zamonaviy uskunalar",
+    "box2Desc": "Biz faqat professional mashinalar va gipoallergen, xavfsiz yuvish vositalaridan foydalanamiz.",
+    "box3Title": "Tez va qulay",
+    "box3Desc": "Toshkent bo'ylab bepul olib ketish va yetkazib berish. Biz dam olish kunlarisiz ishlaymiz."
+  },
+  "MobileStickyBar": {
+    "order": "Buyurtma berish"
+  },
+  "Metadata": {
+    "title": "Express Clean | Toshkentda Gilam va Mebel Yuvish Xizmati",
+    "description": "Toshkentda gilam, yumshoq mebel, parda va adyollarni professional yuvish va tozalash xizmati. Bepul olib ketish va yetkazish. 100% sifat kafolati."
+  }
+}

@@ -1,36 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
-
-const reviews = [
-  {
-    name: "Shahnoza R.",
-    review: "Gilamimizdagi eski dog'larni ketkizishdi, raxmat! Juda tez va sifatli ishlasharkan.",
-  },
-  {
-    name: "Aziz T.",
-    review: "Yumshoq mebellarim yangidek bo'lib qoldi. Hidlari ham juda yoqimli. Tavsiya qilaman!",
-  },
-  {
-    name: "Malika K.",
-    review: "Servis a'lo darajada. O'zlari olib ketib, 2 kunda top-toza qilib qaytarib kelishdi.",
-  },
-  {
-    name: "Rustam B.",
-    review: "Ofisimizdagi barcha stullardagi dog'larni tozalashdi. Narxlari ham hamyonbop ekan.",
-  },
-  {
-    name: "Nargiza A.",
-    review: "Matraslarimizni tozalashga bergan edik, xuddi yangi sotib olgandek bo'lib qaytdi. Kattakon rahmat!",
-  },
-];
-
-// Duplicate reviews to create a longer track to prevent blank spaces when sliding
-const extendedReviews = [...reviews, ...reviews, ...reviews];
+import { useTranslations } from "next-intl";
 
 export function ReviewsSection() {
+  const t = useTranslations("Reviews");
+
+  const reviews = useMemo(() => [
+    { name: t("r1_name"), review: t("r1_review") },
+    { name: t("r2_name"), review: t("r2_review") },
+    { name: t("r3_name"), review: t("r3_review") },
+    { name: t("r4_name"), review: t("r4_review") },
+    { name: t("r5_name"), review: t("r5_review") },
+  ], [t]);
+
+  const extendedReviews = useMemo(() => [...reviews, ...reviews, ...reviews], [reviews]);
+
   const [index, setIndex] = useState(0);
   const maxIndex = reviews.length; // Limit loop to the original length to simulate infinity
 
@@ -66,9 +53,9 @@ export function ReviewsSection() {
       
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">Mijozlarimiz fikrlari</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">{t("title")}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Bizning eng katta yutug'imiz - mamnun mijozlarimiz.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -130,7 +117,7 @@ export function ReviewsSection() {
                         </div>
                         <div>
                           <div className="font-bold text-foreground">{item.name}</div>
-                          <div className="text-xs text-muted-foreground">Tasdiqlangan mijoz</div>
+                          <div className="text-xs text-muted-foreground">{t("verified")}</div>
                         </div>
                       </div>
                     </motion.div>
