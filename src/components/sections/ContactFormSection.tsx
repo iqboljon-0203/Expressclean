@@ -48,7 +48,26 @@ export function ContactFormSection() {
       setName("");
       setPhone("");
       closeForm();
-      router.push("/success");
+      
+      if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+        let callbackFired = false;
+        const callback = () => {
+          if (!callbackFired) {
+            callbackFired = true;
+            router.push("/success");
+          }
+        };
+
+        (window as any).gtag("event", "conversion_event_submit_lead_form", {
+          event_callback: callback,
+          event_timeout: 2000,
+        });
+
+        // Fallback in case gtag fails to execute the callback
+        setTimeout(callback, 2100);
+      } else {
+        router.push("/success");
+      }
     } catch (error) {
       console.error(error);
       alert(t("errorMsg"));
