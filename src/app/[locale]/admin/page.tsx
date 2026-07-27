@@ -63,7 +63,7 @@ export default async function AdminDashboard() {
               </tr>
             </thead>
             <tbody className="text-sm">
-              {allOrders.slice(0, 10).map((order) => (
+              {allOrders.slice(0, 10).map((order: any) => (
                 <tr key={order.id} className="hover:bg-gray-50 transition-colors">
                   <td className="p-4 border-b border-gray-50">
                     <div className="font-medium">{order.name}</div>
