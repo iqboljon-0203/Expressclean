@@ -4,13 +4,33 @@ import { useState, useEffect } from "react";
 import { motion, useSpring, useTransform } from "framer-motion";
 import { Ruler, Calculator } from "lucide-react";
 import { RippleButton } from "@/components/ui/RippleButton";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { supabase } from "@/lib/supabase";
 
 export function CalculatorSection() {
   const t = useTranslations("Calculator");
+  const locale = useLocale();
+  const [data, setData] = useState<any>(null);
+
   const [width, setWidth] = useState(2);
   const [length, setLength] = useState(3);
-  const pricePerSqm = 12000;
+  
+  useEffect(() => {
+    async function fetchData() {
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return;
+      const { data: dbData } = await supabase.from('calculator').select('*').limit(1).single();
+      if (dbData) {
+        setData(dbData);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const pricePerSqm = data ? data.price_per_sqm : 12000;
+  const headerTitle = data ? data[`title_${locale}`] : t("title");
+  const headerSubtitle = data ? data[`subtitle_${locale}`] : t("subtitle");
+  const noteText = data ? data[`note_${locale}`] : t("note");
+  const btnText = data ? data[`btn_text_${locale}`] : t("orderBtn");
 
   // Calculate actual total price
   const total = width * length * pricePerSqm;
@@ -46,10 +66,10 @@ export function CalculatorSection() {
             className="text-3xl md:text-5xl font-bold text-foreground mb-4 flex items-center justify-center gap-3"
           >
             <Calculator className="w-8 h-8 text-primary" />
-            {t("title")}
+            {headerTitle}
           </motion.h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {t("subtitle")}
+            {headerSubtitle}
           </p>
         </div>
 
@@ -105,13 +125,13 @@ export function CalculatorSection() {
                 <span className="text-xl font-bold text-muted-foreground">{t("currency")}</span>
               </div>
               <p className="text-xs text-primary mt-2 font-medium">
-                {t("note")}
+                {noteText}
               </p>
             </div>
 
             <a href="#contact" className="block mt-8">
               <RippleButton className="w-full bg-primary text-white py-4 rounded-xl text-lg font-bold shadow-premium hover:shadow-premium-hover">
-                {t("orderBtn")}
+                {btnText}
               </RippleButton>
             </a>
           </div>

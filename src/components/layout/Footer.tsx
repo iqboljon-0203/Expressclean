@@ -1,10 +1,28 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, MapPin, Clock } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
+import { supabase } from "@/lib/supabase";
 
-export function Footer() {
-  const t = useTranslations("Footer");
+export async function Footer() {
+  const t = await getTranslations("Footer");
+  const locale = await getLocale();
+
+  // Fetch dynamic footer content from Supabase
+  const { data: footerData } = await supabase
+    .from("footer_content")
+    .select("*")
+    .eq("id", 1)
+    .single();
+
+  const phone = footerData?.phone || "+998 94 850 00 06";
+  const schedule = footerData?.[`schedule_${locale}`] || t("schedule");
+  const address = footerData?.[`address_${locale}`] || t("address");
+  const description = footerData?.[`description_${locale}`] || t("description");
+  const instagramUrl = footerData?.instagram_url || "https://www.instagram.com/expressclean.uz?igsh=N2lsdThka2MwZXZt";
+  const facebookUrl = footerData?.facebook_url || "#";
+  const telegramUrl = footerData?.telegram_url || "#";
+
   return (
     <footer id="aloqa" className="bg-foreground text-white py-12 pb-24 md:pb-12">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -14,7 +32,7 @@ export function Footer() {
             <Image src="/logo.png" alt="Express Clean" width={180} height={50} className="object-contain h-10 w-auto brightness-0 invert" />
           </div>
           <p className="text-gray-400 text-sm leading-relaxed">
-            {t("description")}
+            {description}
           </p>
         </div>
         
@@ -35,18 +53,18 @@ export function Footer() {
           <h4 className="text-lg font-semibold mb-4">{t("contactTitle")}</h4>
           <ul className="space-y-4">
             <li>
-              <a href="tel:+998948500006" className="flex items-center text-gray-300 hover:text-white transition-colors">
+              <a href={`tel:${phone.replace(/\s/g, "")}`} className="flex items-center text-gray-300 hover:text-white transition-colors">
                 <Phone className="w-5 h-5 mr-3 text-secondary" />
-                +998 94 850 00 06
+                {phone}
               </a>
             </li>
             <li className="flex items-start text-gray-300">
               <Clock className="w-5 h-5 mr-3 text-secondary shrink-0 mt-0.5" />
-              <span>{t("schedule")}</span>
+              <span>{schedule}</span>
             </li>
             <li className="flex items-start text-gray-300">
               <MapPin className="w-5 h-5 mr-3 text-secondary shrink-0 mt-0.5" />
-              <span>{t("address")}</span>
+              <span>{address}</span>
             </li>
           </ul>
         </div>
@@ -56,17 +74,21 @@ export function Footer() {
           <h4 className="text-lg font-semibold mb-4">{t("socialTitle")}</h4>
           <div className="flex gap-4">
             {/* Instagram */}
-            <a href="https://www.instagram.com/expressclean.uz?igsh=N2lsdThka2MwZXZt" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
             {/* Facebook */}
-            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
+            {facebookUrl !== "#" && (
+              <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+            )}
             {/* Telegram */}
-            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 10l-4 4 6 6 4-16-18 7 4 2 3-9"/></svg>
-            </a>
+            {telegramUrl !== "#" && (
+              <a href={telegramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 10l-4 4 6 6 4-16-18 7 4 2 3-9"/></svg>
+              </a>
+            )}
           </div>
         </div>
       </div>

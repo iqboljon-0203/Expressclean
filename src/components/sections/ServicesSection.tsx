@@ -5,11 +5,27 @@ import { Sparkles, Home, Sofa, SplitSquareHorizontal, ArrowRight, BedDouble, Lay
 import Link from "next/link";
 import Image from "next/image";
 import { RippleButton } from "@/components/ui/RippleButton";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+
+interface ServiceData {
+  id: string;
+  title_uz: string;
+  title_ru: string;
+  price: string;
+  description_uz: string;
+  description_ru: string;
+  image_url: string | null;
+}
 
 export function ServicesSection() {
   const t = useTranslations("Services");
-  const services = [
+  const locale = useLocale();
+  const [dbServices, setDbServices] = useState<ServiceData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fallbackServices = [
     {
       title: t("items.item1.title"),
       price: t("items.item1.price"),
@@ -53,6 +69,54 @@ export function ServicesSection() {
       image: "/service6.png",
     },
   ];
+  const [headerData, setHeaderData] = useState<{ title_uz: string, title_ru: string, subtitle_uz: string, subtitle_ru: string } | null>(null);
+
+  useEffect(() => {
+    async function fetchServices() {
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+        setIsLoading(false);
+        return;
+      }
+      try {
+        const [servicesRes, headerRes] = await Promise.all([
+          supabase.from('services').select('*').order('created_at', { ascending: true }),
+          supabase.from('services_header').select('*').limit(1).single()
+        ]);
+        
+        if (servicesRes.data && !servicesRes.error && servicesRes.data.length > 0) {
+          setDbServices(servicesRes.data);
+        }
+        if (headerRes.data && !headerRes.error) {
+          setHeaderData(headerRes.data);
+        }
+      } catch (err) {
+        console.error("Error fetching services:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchServices();
+  }, []);
+
+  const defaultIcons = [
+    <SplitSquareHorizontal key="1" className="w-6 h-6 text-primary" />,
+    <Home key="2" className="w-6 h-6 text-primary" />,
+    <Sofa key="3" className="w-6 h-6 text-primary" />,
+    <Layers key="4" className="w-6 h-6 text-primary" />,
+    <BedDouble key="5" className="w-6 h-6 text-primary" />,
+    <Sparkles key="6" className="w-6 h-6 text-primary" />
+  ];
+
+  const displayedServices = dbServices.length > 0 ? dbServices.map((service, i) => ({
+    title: locale === 'ru' ? service.title_ru : service.title_uz,
+    price: service.price,
+    description: locale === 'ru' ? service.description_ru : service.description_uz,
+    icon: defaultIcons[i % defaultIcons.length],
+    image: service.image_url || fallbackServices[i % fallbackServices.length].image
+  })) : fallbackServices;
+
+  const headerTitle = headerData ? headerData[`title_${locale}` as 'title_uz' | 'title_ru'] : t("title");
+  const headerSubtitle = headerData ? headerData[`subtitle_${locale}` as 'subtitle_uz' | 'subtitle_ru'] : t("subtitle");
 
   return (
     <section id="xizmatlar" className="py-24 relative overflow-hidden bg-gray-50/50">
@@ -64,7 +128,7 @@ export function ServicesSection() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight"
           >
-            {t("title")}
+            {headerTitle}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -73,12 +137,12 @@ export function ServicesSection() {
             transition={{ delay: 0.1 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            {t("subtitle")}
+            {headerSubtitle}
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+          {displayedServices.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}

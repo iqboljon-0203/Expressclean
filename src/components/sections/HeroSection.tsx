@@ -4,18 +4,28 @@ import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
 import { Users, Truck, Sparkles, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { RippleButton } from "@/components/ui/RippleButton";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { supabase } from "@/lib/supabase";
 
 export function HeroSection() {
   const t = useTranslations("Hero");
+  const locale = useLocale();
 
-  const badges = [
-    { icon: <Users className="w-5 h-5 text-accent" />, text: t("badge1") },
-    { icon: <Truck className="w-5 h-5 text-accent" />, text: t("badge2") },
-    { icon: <Sparkles className="w-5 h-5 text-accent" />, text: t("badge3") },
-  ];
+  const [heroData, setHeroData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchHero() {
+      const { data, error } = await supabase.from('hero_content').select('*').limit(1).single();
+      if (!error && data) {
+        setHeroData(data);
+      }
+      setLoading(false);
+    }
+    fetchHero();
+  }, []);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -35,6 +45,30 @@ export function HeroSection() {
 
   // The mask image will reveal the clean background where the pointer is
   const maskImage = useMotionTemplate`radial-gradient(150px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`;
+
+  // Fallback to translations if DB fails
+  const interactiveText = heroData ? heroData[`interactive_${locale}`] : t("interactive");
+  const title1 = heroData ? heroData[`title_line1_${locale}`] : t("titleLine1");
+  const title2 = heroData ? heroData[`title_line2_${locale}`] : t("titleLine2");
+  const subtitle = heroData ? heroData[`subtitle_${locale}`] : t("subtitle");
+  const cta = heroData ? heroData[`cta_${locale}`] : t("cta");
+  const badge1 = heroData ? heroData[`badge1_${locale}`] : t("badge1");
+  const badge2 = heroData ? heroData[`badge2_${locale}`] : t("badge2");
+  const badge3 = heroData ? heroData[`badge3_${locale}`] : t("badge3");
+
+  const badges = [
+    { icon: <Users className="w-5 h-5 text-accent" />, text: badge1 },
+    { icon: <Truck className="w-5 h-5 text-accent" />, text: badge2 },
+    { icon: <Sparkles className="w-5 h-5 text-accent" />, text: badge3 },
+  ];
+
+  if (loading) {
+    return (
+      <section className="relative pt-20 pb-12 md:pt-32 md:pb-24 overflow-hidden min-h-[90vh] flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      </section>
+    );
+  }
 
   return (
     <section 
@@ -78,16 +112,16 @@ export function HeroSection() {
           transition={{ duration: 0.5 }}
         >
           <span className="inline-block py-1.5 px-3 md:px-4 rounded-full bg-white/70 backdrop-blur-md text-primary text-xs md:text-sm font-semibold mb-6 shadow-sm border border-white/50">
-            {t("interactive")}
+            {interactiveText}
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground tracking-tight leading-[1.15] md:leading-[1.1] mb-4 md:mb-6 drop-shadow-sm break-words hyphens-auto">
-            {t("titleLine1")} <br className="hidden md:block"/>
+            {title1} <br className="hidden md:block"/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-              {t("titleLine2")}
+              {title2}
             </span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-foreground/80 font-medium mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-sm bg-white/40 md:bg-white/30 backdrop-blur-sm rounded-2xl p-3 md:p-4 border border-white/40">
-            {t("subtitle")}
+            {subtitle}
           </p>
         </motion.div>
 
@@ -106,7 +140,7 @@ export function HeroSection() {
             }}
           >
             <RippleButton className="px-8 py-4 text-base font-bold text-white bg-primary rounded-full hover:bg-primary-hover shadow-premium hover:shadow-premium-hover transition-all duration-300">
-              {t("cta")}
+              {cta}
               <ArrowRight className="ml-2 w-5 h-5" />
             </RippleButton>
           </a>

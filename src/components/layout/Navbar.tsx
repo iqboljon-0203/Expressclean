@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
-export function Navbar() {
+export function Navbar({ phone = "+998 94 850 00 06" }: { phone?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations("Navbar");
 
@@ -36,11 +36,11 @@ export function Navbar() {
           ))}
           <LanguageSwitcher />
           <a
-            href="tel:+998334060006"
+            href={`tel:${phone.replace(/\s/g, "")}`}
             className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full font-medium hover:bg-primary-hover transition-colors shadow-sm"
           >
             <PhoneCall className="w-4 h-4" />
-            +998 33 406 0006
+            {phone}
           </a>
         </nav>
 
@@ -75,12 +75,12 @@ export function Navbar() {
                 </Link>
               ))}
               <a
-                href="tel:+998334060006"
+                href={`tel:${phone.replace(/\s/g, "")}`}
                 className="flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 rounded-xl font-medium hover:bg-primary-hover transition-colors shadow-sm mt-4 mb-2"
                 onClick={() => setIsOpen(false)}
               >
                 <PhoneCall className="w-5 h-5" />
-                +998 33 406 0006
+                {phone}
               </a>
               <div className="flex justify-center pb-4">
                 <LanguageSwitcher />

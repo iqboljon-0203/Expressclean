@@ -3,18 +3,70 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { supabase } from "@/lib/supabase";
+
+interface ReviewData {
+  id: string;
+  name: string;
+  text_uz: string;
+  text_ru: string;
+  rating: number;
+  is_verified: boolean;
+}
 
 export function ReviewsSection() {
   const t = useTranslations("Reviews");
+  const locale = useLocale();
 
-  const reviews = useMemo(() => [
-    { name: t("r1_name"), review: t("r1_review") },
-    { name: t("r2_name"), review: t("r2_review") },
-    { name: t("r3_name"), review: t("r3_review") },
-    { name: t("r4_name"), review: t("r4_review") },
-    { name: t("r5_name"), review: t("r5_review") },
+  const fallbackReviews = useMemo(() => [
+    { name: t("r1_name"), review: t("r1_review"), rating: 5 },
+    { name: t("r2_name"), review: t("r2_review"), rating: 5 },
+    { name: t("r3_name"), review: t("r3_review"), rating: 5 },
+    { name: t("r4_name"), review: t("r4_review"), rating: 5 },
+    { name: t("r5_name"), review: t("r5_review"), rating: 5 },
   ], [t]);
+
+  const [dbReviews, setDbReviews] = useState<ReviewData[]>([]);
+  const [headerData, setHeaderData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+        setIsLoading(false);
+        return;
+      }
+      try {
+        const [reviewsRes, headerRes] = await Promise.all([
+          supabase.from('reviews').select('*').order('created_at', { ascending: false }),
+          supabase.from('reviews_header').select('*').limit(1).single()
+        ]);
+        if (reviewsRes.data && !reviewsRes.error && reviewsRes.data.length > 0) {
+          setDbReviews(reviewsRes.data);
+        }
+        if (headerRes.data && !headerRes.error) {
+          setHeaderData(headerRes.data);
+        }
+      } catch (err) {
+        console.error("Error fetching reviews data:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const reviews = useMemo(() => {
+    if (dbReviews.length > 0) {
+      return dbReviews.map(r => ({
+        name: r.name,
+        review: locale === 'ru' ? r.text_ru : r.text_uz,
+        rating: r.rating || 5
+      }));
+    }
+    return fallbackReviews;
+  }, [dbReviews, fallbackReviews, locale]);
 
   const extendedReviews = useMemo(() => [...reviews, ...reviews, ...reviews], [reviews]);
 
@@ -36,7 +88,10 @@ export function ReviewsSection() {
       paginate(1);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [maxIndex]); // Added maxIndex to deps
+
+  const headerTitle = headerData ? headerData[`title_${locale}`] : t("title");
+  const headerSubtitle = headerData ? headerData[`subtitle_${locale}`] : t("subtitle");
 
   return (
     <section id="sharhlar" className="py-24 bg-gradient-to-b from-white to-blue-50/30 overflow-hidden relative">
@@ -53,9 +108,9 @@ export function ReviewsSection() {
       
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">{t("title")}</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">{headerTitle}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            {t("subtitle")}
+            {headerSubtitle}
           </p>
         </div>
 
@@ -87,9 +142,6 @@ export function ReviewsSection() {
               transition={{ type: "spring", stiffness: 200, damping: 25, mass: 0.8 }}
             >
               {extendedReviews.map((item, i) => {
-                // Determine if this card is currently in view to give it a slight pop effect
-                // On mobile (1 card), it's active if i === index
-                // On desktop (3 cards), it's active if i >= index && i < index + 3
                 return (
                   <div key={i} className="w-full md:w-1/3 shrink-0 px-4">
                     <motion.div 
@@ -102,7 +154,7 @@ export function ReviewsSection() {
                       <Quote className="absolute top-6 right-6 w-10 h-10 text-primary/10 rotate-12" />
                       
                       <div className="flex gap-1 mb-6">
-                        {[1, 2, 3, 4, 5].map((star) => (
+                        {Array.from({ length: item.rating }).map((_, star) => (
                           <Star key={star} className="w-5 h-5 fill-yellow-400 text-yellow-400 drop-shadow-sm" />
                         ))}
                       </div>

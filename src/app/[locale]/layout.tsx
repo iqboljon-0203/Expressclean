@@ -2,11 +2,9 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { Poppins } from "next/font/google";
 import "../globals.css";
 
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { MobileStickyBar } from "@/components/layout/MobileStickyBar";
 import { getTranslations } from "next-intl/server";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { supabase } from "@/lib/supabase";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -24,11 +22,15 @@ export async function generateMetadata(
   const baseUrl = "https://expressclean.uz";
   const canonicalUrl = locale === 'uz' ? baseUrl : `${baseUrl}/${locale}`;
 
-  return {
-    metadataBase: new URL(baseUrl),
-    title: t('title'),
-    description: t('description'),
-    keywords: [
+  const { data: seoData } = await supabase
+    .from('seo_settings')
+    .select('*')
+    .eq('id', 1)
+    .single();
+
+  const title = seoData?.[`title_${locale}`] || t('title');
+  const description = seoData?.[`description_${locale}`] || t('description');
+  const keywords = seoData?.[`keywords_${locale}`]?.split(',').map((k: string) => k.trim()) || [
       "gilam yuvish", "gilam yuvish toshkent", "gilam tozalash", "gilam yuvish narxlari", "gilam yuvish xizmati",
       "mebel tozalash", "mebel yuvish", "divan yuvish", "yumshoq mebel tozalash",
       "parda yuvish", "parda tozalash", "adyol yuvish", "toshkentda gilam yuvish",
@@ -36,7 +38,13 @@ export async function generateMetadata(
       "чистка ковров", "чистка ковров ташкент", "стирка ковров", "стирка ковров ташкент",
       "химчистка ковров", "мойка ковров", "химчистка мягкой мебели", "чистка диванов",
       "химчистка штор", "чистка ковров цены", "клининг ташкент", "express clean ташкент"
-    ],
+    ];
+
+  return {
+    metadataBase: new URL(baseUrl),
+    title: title,
+    description: description,
+    keywords: keywords,
     authors: [{ name: "Express Clean" }],
     creator: "Express Clean",
     publisher: "Express Clean",
@@ -63,8 +71,8 @@ export async function generateMetadata(
       locale: locale === 'uz' ? 'uz_UZ' : 'ru_RU',
       alternateLocale: locale === 'uz' ? 'ru_RU' : 'uz_UZ',
       url: canonicalUrl,
-      title: t('title'),
-      description: t('description'),
+      title: title,
+      description: description,
       siteName: "Express Clean",
       images: [
         {
@@ -77,8 +85,8 @@ export async function generateMetadata(
     },
     twitter: {
       card: "summary_large_image",
-      title: t('title'),
-      description: t('description'),
+      title: title,
+      description: description,
       images: ["/logo.png"],
     },
   };
@@ -149,12 +157,7 @@ export default async function RootLayout({
         <GoogleTagManager gtmId="GTM-K72PRCRF" />
         <GoogleAnalytics gaId="G-BE6Y6N2KQP" />
         <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-          <MobileStickyBar />
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>

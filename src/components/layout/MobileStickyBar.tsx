@@ -4,7 +4,7 @@ import { Phone, CalendarCheck } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-export function MobileStickyBar() {
+export function MobileStickyBar({ phone = "+998 94 850 00 06" }: { phone?: string }) {
   const t = useTranslations("MobileStickyBar");
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-muted shadow-[0_-4px_12px_rgba(0,0,0,0.05)] pb-safe-area">
@@ -20,7 +20,7 @@ export function MobileStickyBar() {
           {t("order")}
         </button>
         <a
-          href="tel:+998948500006"
+          href={`tel:${phone.replace(/\s/g, "")}`}
           className="w-14 bg-muted text-primary rounded-xl flex items-center justify-center active:scale-[0.98] transition-transform"
           aria-label="Qo'ng'iroq qilish"
         >

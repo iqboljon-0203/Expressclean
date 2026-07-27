@@ -6,8 +6,17 @@ import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";
 import { useTranslations } from "next-intl";
 
-export default function AboutPage() {
+export function AboutClient({ initialData }: { initialData: any }) {
   const t = useTranslations("About");
+  
+  // Ma'lumotlarni bazadan yoki JSON'dan olish
+  const getData = (key: string) => {
+    return (initialData && initialData[key]) || t(key);
+  };
+  const getRaw = (key: string) => {
+    return (initialData && initialData[key]) || t.raw(key);
+  };
+
   return (
     <main className="min-h-screen bg-background">
       
@@ -17,7 +26,7 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-black text-foreground mb-4 font-outfit">{t("title")}</h1>
+          <h1 className="text-4xl md:text-5xl font-black text-foreground mb-4 font-outfit">{getData("title")}</h1>
           <div className="w-20 h-1.5 bg-primary rounded-full"></div>
         </motion.div>
 
@@ -29,26 +38,26 @@ export default function AboutPage() {
             transition={{ delay: 0.2 }}
             className="space-y-6 text-foreground/80 leading-relaxed text-lg"
           >
-            <p dangerouslySetInnerHTML={{ __html: t.raw("p1") }} />
-            <p dangerouslySetInnerHTML={{ __html: t.raw("p2") }} />
-            <p dangerouslySetInnerHTML={{ __html: t.raw("p3") }} />
+            <p dangerouslySetInnerHTML={{ __html: getRaw("p1") }} />
+            <p dangerouslySetInnerHTML={{ __html: getRaw("p2") }} />
+            <p dangerouslySetInnerHTML={{ __html: getRaw("p3") }} />
 
             <ul className="space-y-4 pt-4 border-t border-muted/50">
               <li className="flex gap-3">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span>{t("li1")}</span>
+                <span>{getData("li1")}</span>
               </li>
               <li className="flex gap-3">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span>{t("li2")}</span>
+                <span>{getData("li2")}</span>
               </li>
               <li className="flex gap-3">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span>{t("li3")}</span>
+                <span>{getData("li3")}</span>
               </li>
               <li className="flex gap-3">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
-                <span>{t("li4")}</span>
+                <span>{getData("li4")}</span>
               </li>
             </ul>
           </motion.div>
@@ -79,25 +88,25 @@ export default function AboutPage() {
                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-1 md:mb-2 shadow-sm border border-blue-100/50">
                         <ShieldCheck className="w-5 h-5 md:w-6 md:h-6" />
                       </div>
-                      <span className="text-[9px] md:text-[10px] font-bold text-[#0f3460] leading-tight" dangerouslySetInnerHTML={{ __html: t.raw("badge1") }} />
+                      <span className="text-[9px] md:text-[10px] font-bold text-[#0f3460] leading-tight" dangerouslySetInnerHTML={{ __html: getRaw("badge1") }} />
                     </div>
                     <div className="flex flex-col items-center text-center">
                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center mb-1 md:mb-2 shadow-sm border border-green-100/50">
                         <Shield className="w-5 h-5 md:w-6 md:h-6" />
                       </div>
-                      <span className="text-[9px] md:text-[10px] font-bold text-[#0f3460] leading-tight" dangerouslySetInnerHTML={{ __html: t.raw("badge2") }} />
+                      <span className="text-[9px] md:text-[10px] font-bold text-[#0f3460] leading-tight" dangerouslySetInnerHTML={{ __html: getRaw("badge2") }} />
                     </div>
                     <div className="flex flex-col items-center text-center">
                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center mb-1 md:mb-2 shadow-sm border border-orange-100/50">
                         <Clock className="w-5 h-5 md:w-6 md:h-6" />
                       </div>
-                      <span className="text-[9px] md:text-[10px] font-bold text-[#0f3460] leading-tight" dangerouslySetInnerHTML={{ __html: t.raw("badge3") }} />
+                      <span className="text-[9px] md:text-[10px] font-bold text-[#0f3460] leading-tight" dangerouslySetInnerHTML={{ __html: getRaw("badge3") }} />
                     </div>
                     <div className="flex flex-col items-center text-center">
                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-1 md:mb-2 shadow-sm border border-purple-100/50">
                         <ThumbsUp className="w-5 h-5 md:w-6 md:h-6" />
                       </div>
-                      <span className="text-[9px] md:text-[10px] font-bold text-[#0f3460] leading-tight" dangerouslySetInnerHTML={{ __html: t.raw("badge4") }} />
+                      <span className="text-[9px] md:text-[10px] font-bold text-[#0f3460] leading-tight" dangerouslySetInnerHTML={{ __html: getRaw("badge4") }} />
                     </div>
                   </div>
                 </div>
@@ -105,12 +114,12 @@ export default function AboutPage() {
                 {/* Right Side: Title & Image */}
                 <div className="flex-1 flex flex-col mt-4 md:mt-0">
                   <h3 className="text-[1rem] sm:text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] font-black text-[#0f3460] leading-tight mb-3 md:mb-4 uppercase text-center md:text-left">
-                    <span dangerouslySetInnerHTML={{ __html: t.raw("cardTitle1") }} />
-                    <span dangerouslySetInnerHTML={{ __html: t.raw("cardTitle2") }} />
-                    <span dangerouslySetInnerHTML={{ __html: t.raw("cardTitle3") }} />
+                    <span dangerouslySetInnerHTML={{ __html: getRaw("cardTitle1") }} />
+                    <span dangerouslySetInnerHTML={{ __html: getRaw("cardTitle2") }} />
+                    <span dangerouslySetInnerHTML={{ __html: getRaw("cardTitle3") }} />
                   </h3>
                   <div className="relative flex-grow min-h-[140px] sm:min-h-[160px] md:min-h-[200px] w-full rounded-2xl overflow-hidden shadow-lg border border-gray-100 mt-2">
-                    <Image src="/hero-bg-v3.png" alt="Cleaning process" fill className="object-cover object-center" />
+                    <Image src={initialData?.image_url || "/hero-bg-v3.png"} alt="Cleaning process" fill className="object-cover object-center" />
                   </div>
                 </div>
               </div>
@@ -125,7 +134,7 @@ export default function AboutPage() {
                   <PhoneCall className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-[10px] md:text-xs text-blue-200 uppercase tracking-widest mb-0.5 font-bold">{t("contactLabel")}</div>
+                  <div className="text-[10px] md:text-xs text-blue-200 uppercase tracking-widest mb-0.5 font-bold">{getData("contactLabel")}</div>
                   <div className="text-lg md:text-2xl font-black tracking-wide">+998 94 850 00 06</div>
                 </div>
               </div>
@@ -138,8 +147,8 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-[10px] text-white/70 uppercase font-bold tracking-wider">{t("locationLabel1")}</div>
-                  <div className="text-sm font-black text-blue-300">{t("locationLabel2")}</div>
+                  <div className="text-[10px] text-white/70 uppercase font-bold tracking-wider">{getData("locationLabel1")}</div>
+                  <div className="text-sm font-black text-blue-300">{getData("locationLabel2")}</div>
                 </div>
               </div>
             </div>
@@ -148,19 +157,19 @@ export default function AboutPage() {
             <div className="bg-[#0088cc] px-4 py-4 grid grid-cols-2 md:grid-cols-4 gap-2 text-white text-[9px] md:text-[10px] font-bold leading-tight">
                <div className="flex items-center gap-2 justify-center text-center">
                  <Settings className="w-4 h-4 flex-shrink-0 opacity-80" />
-                 <span dangerouslySetInnerHTML={{ __html: t.raw("strip1") }} />
+                 <span dangerouslySetInnerHTML={{ __html: getRaw("strip1") }} />
                </div>
                <div className="flex items-center gap-2 justify-center text-center">
                  <svg className="w-4 h-4 flex-shrink-0 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
-                 <span dangerouslySetInnerHTML={{ __html: t.raw("strip2") }} />
+                 <span dangerouslySetInnerHTML={{ __html: getRaw("strip2") }} />
                </div>
                <div className="flex items-center gap-2 justify-center text-center">
                  <Shield className="w-4 h-4 flex-shrink-0 opacity-80" />
-                 <span dangerouslySetInnerHTML={{ __html: t.raw("strip3") }} />
+                 <span dangerouslySetInnerHTML={{ __html: getRaw("strip3") }} />
                </div>
                <div className="flex items-center gap-2 justify-center text-center">
                  <Truck className="w-4 h-4 flex-shrink-0 opacity-80" />
-                 <span dangerouslySetInnerHTML={{ __html: t.raw("strip4") }} />
+                 <span dangerouslySetInnerHTML={{ __html: getRaw("strip4") }} />
                </div>
             </div>
           </motion.div>
@@ -177,9 +186,9 @@ export default function AboutPage() {
             <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 text-primary shadow-sm border border-primary/10">
               <ShieldCheck className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-bold text-[#0f3460] mb-4">{t("box1Title")}</h3>
+            <h3 className="text-xl font-bold text-[#0f3460] mb-4">{getData("box1Title")}</h3>
             <p className="text-foreground/80 leading-relaxed text-sm">
-              {t("box1Desc")}
+              {getData("box1Desc")}
             </p>
           </motion.div>
           
@@ -193,9 +202,9 @@ export default function AboutPage() {
             <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 text-primary shadow-sm border border-primary/10">
               <Settings className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-bold text-[#0f3460] mb-4">{t("box2Title")}</h3>
+            <h3 className="text-xl font-bold text-[#0f3460] mb-4">{getData("box2Title")}</h3>
             <p className="text-foreground/80 leading-relaxed text-sm">
-              {t("box2Desc")}
+              {getData("box2Desc")}
             </p>
           </motion.div>
 
@@ -209,9 +218,9 @@ export default function AboutPage() {
             <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 text-primary shadow-sm border border-primary/10">
               <Truck className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-bold text-[#0f3460] mb-4">{t("box3Title")}</h3>
+            <h3 className="text-xl font-bold text-[#0f3460] mb-4">{getData("box3Title")}</h3>
             <p className="text-foreground/80 leading-relaxed text-sm">
-              {t("box3Desc")}
+              {getData("box3Desc")}
             </p>
           </motion.div>
         </div>

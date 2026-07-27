@@ -1,11 +1,29 @@
 import { NextResponse } from 'next/server';
+import { supabase } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
-    const { name, phone } = await request.json();
+    const { name, phone, serviceType } = await request.json();
 
     if (!name || !phone) {
       return NextResponse.json({ error: 'Name and phone are required' }, { status: 400 });
+    }
+
+    // Bazaga yozish
+    const { error: dbError } = await supabase
+      .from('orders')
+      .insert([
+        { 
+          name, 
+          phone, 
+          service_type: serviceType || 'Umumiy tozalash',
+          status: 'Yangi'
+        }
+      ]);
+
+    if (dbError) {
+      console.error("Order saqlashda xatolik:", dbError);
+      // Biz Telegramga baribir yuboramiz, shuning uchun bu xatoni ignore qilish ham mumkin
     }
 
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
@@ -16,7 +34,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true, simulated: true });
     }
 
-    const message = `🌟 <b>Yangi Buyurtma!</b>\n\n👤 <b>Mijoz:</b> ${name}\n📞 <b>Telefon:</b> ${phone}\n\n<i>Sayt orqali yuborildi</i>`;
+    const serviceText = serviceType ? `\n🧹 <b>Xizmat:</b> ${serviceType}` : '';
+    const message = `🌟 <b>Yangi Buyurtma!</b>\n\n👤 <b>Mijoz:</b> ${name}\n📞 <b>Telefon:</b> ${phone}${serviceText}\n\n<i>Sayt orqali yuborildi</i>`;
 
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
     

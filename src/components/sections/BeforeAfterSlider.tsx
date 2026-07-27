@@ -1,14 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MoveHorizontal } from "lucide-react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { supabase } from "@/lib/supabase";
 
 export function BeforeAfterSlider() {
   const t = useTranslations("BeforeAfter");
+  const locale = useLocale();
+  const [data, setData] = useState<any>(null);
   const [sliderPosition, setSliderPosition] = useState(50);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return;
+      const { data: dbData } = await supabase.from('before_after_header').select('*').limit(1).single();
+      if (dbData) {
+        setData(dbData);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const headerTitle = data ? data[`title_${locale}`] : t("title");
+  const headerSubtitle = data ? data[`subtitle_${locale}`] : t("subtitle");
+  const labelBefore = data ? data[`label_before_${locale}`] : t("before");
+  const labelAfter = data ? data[`label_after_${locale}`] : t("after");
+  const imageBefore = data?.image_before || "/before.png";
+  const imageAfter = data?.image_after || "/after.png";
 
   const handleDrag = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -28,10 +49,12 @@ export function BeforeAfterSlider() {
     <section id="natijalar" className="py-24 bg-foreground relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{t("title")}</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t("subtitle")}
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{headerTitle}</h2>
+          {headerSubtitle && (
+            <p className="text-white/80 max-w-2xl mx-auto">
+              {headerSubtitle}
+            </p>
+          )}
         </div>
 
         <motion.div 
@@ -48,7 +71,7 @@ export function BeforeAfterSlider() {
             {/* "After" Image (Clean) - Full width background */}
             <div className="absolute inset-0 select-none">
               <Image 
-                src="/after.png" 
+                src={imageAfter} 
                 alt="Toza gilam" 
                 fill 
                 className="object-cover pointer-events-none" 
@@ -62,7 +85,7 @@ export function BeforeAfterSlider() {
               style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
             >
               <Image 
-                src="/before.png" 
+                src={imageBefore} 
                 alt="Kir gilam" 
                 fill 
                 className="object-cover pointer-events-none" 
@@ -82,10 +105,10 @@ export function BeforeAfterSlider() {
             
             {/* Labels */}
             <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium z-20">
-              {t("before")}
+              {labelBefore}
             </div>
             <div className="absolute top-4 right-4 bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium z-20">
-              {t("after")}
+              {labelAfter}
             </div>
           </div>
         </motion.div>

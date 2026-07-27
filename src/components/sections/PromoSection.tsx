@@ -1,19 +1,75 @@
 "use client";
 
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { RippleButton } from "@/components/ui/RippleButton";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { supabase } from "@/lib/supabase";
+
+interface PromoData {
+  id: string;
+  title_uz: string;
+  title_ru: string;
+  highlight_uz: string;
+  highlight_ru: string;
+}
 
 export function PromoSection() {
   const t = useTranslations("Promo");
+  const locale = useLocale();
 
-  const promos = [
+  const fallbackPromos = useMemo(() => [
     { text: t("card1_text"), highlight: t("card1_highlight"), image: "/promo_star.png" },
     { text: t("card2_text"), highlight: t("card2_highlight"), image: "/promo_wallet.png" },
     { text: t("card3_text"), highlight: t("card3_highlight"), image: "/promo_crown.png" },
     { text: t("card4_text"), highlight: t("card4_highlight"), image: "/promo_gift.png" },
-  ];
+  ], [t]);
+
+  const [dbPromos, setDbPromos] = useState<PromoData[]>([]);
+  const [headerData, setHeaderData] = useState<{ headline_uz: string, headline_ru: string, subheadline_uz: string, subheadline_ru: string, cta_uz: string, cta_ru: string } | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+        setIsLoading(false);
+        return;
+      }
+      try {
+        const [promosRes, headerRes] = await Promise.all([
+          supabase.from('promos').select('*').order('created_at', { ascending: true }),
+          supabase.from('promo_header').select('*').limit(1).single()
+        ]);
+        if (promosRes.data && !promosRes.error && promosRes.data.length > 0) {
+          setDbPromos(promosRes.data);
+        }
+        if (headerRes.data && !headerRes.error) {
+          setHeaderData(headerRes.data);
+        }
+      } catch (err) {
+        console.error("Error fetching promos data:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const promos = useMemo(() => {
+    if (dbPromos.length > 0) {
+      return dbPromos.map((p, i) => ({
+        text: locale === 'ru' ? p.title_ru : p.title_uz,
+        highlight: locale === 'ru' ? p.highlight_ru : p.highlight_uz,
+        image: fallbackPromos[i % fallbackPromos.length].image
+      }));
+    }
+    return fallbackPromos;
+  }, [dbPromos, fallbackPromos, locale]);
+
+  const headerHeadline = headerData ? headerData[`headline_${locale}` as 'headline_uz' | 'headline_ru'] : t("headline");
+  const headerSubheadline = headerData ? headerData[`subheadline_${locale}` as 'subheadline_uz' | 'subheadline_ru'] : t("subheadline");
+  const headerCta = headerData ? headerData[`cta_${locale}` as 'cta_uz' | 'cta_ru'] : t("cta");
 
   return (
     <section id="aksiya" className="py-20 bg-gradient-to-br from-amber-50 to-orange-100 relative overflow-hidden">
@@ -31,7 +87,7 @@ export function PromoSection() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight"
           >
-            {t("headline")}
+            {headerHeadline}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: -20 }}
@@ -40,7 +96,7 @@ export function PromoSection() {
             transition={{ delay: 0.1 }}
             className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto font-medium"
           >
-            {t("subheadline")}
+            {headerSubheadline}
           </motion.p>
         </div>
 
@@ -79,7 +135,7 @@ export function PromoSection() {
             }}
           >
             <RippleButton className="px-10 py-5 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-xl font-bold rounded-full shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transition-all duration-300 animate-[pulse_2s_ease-in-out_infinite]">
-              {t("cta")}
+              {headerCta}
             </RippleButton>
           </a>
         </motion.div>
