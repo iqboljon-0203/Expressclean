@@ -122,7 +122,7 @@ export default async function RootLayout({
     "image": "https://expressclean.uz/logo.png",
     "@id": "https://expressclean.uz",
     "url": "https://expressclean.uz",
-    "telephone": "+998948500006",
+    "telephone": "+998950094859",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Toshkent",

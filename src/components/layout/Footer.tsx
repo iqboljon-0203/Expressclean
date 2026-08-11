@@ -15,7 +15,7 @@ export async function Footer() {
     .eq("id", 1)
     .single();
 
-  const phone = footerData?.phone || "+998 94 850 00 06";
+  const phone = footerData?.phone || "+998 95 009 48 59";
   const schedule = footerData?.[`schedule_${locale}`] || t("schedule");
   const address = footerData?.[`address_${locale}`] || t("address");
   const description = footerData?.[`description_${locale}`] || t("description");

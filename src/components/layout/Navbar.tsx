@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
-export function Navbar({ phone = "+998 94 850 00 06" }: { phone?: string }) {
+export function Navbar({ phone = "+998 95 009 48 59" }: { phone?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations("Navbar");
 
