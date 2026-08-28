@@ -42,6 +42,7 @@ export async function Footer() {
           <ul className="space-y-3">
             <li><Link href="/about" className="text-gray-300 hover:text-white transition-colors">{t("nav_about")}</Link></li>
             <li><Link href="/#xizmatlar" className="text-gray-300 hover:text-white transition-colors">{t("nav_services")}</Link></li>
+            <li><Link href="/blog" className="text-gray-300 hover:text-white transition-colors">Blog</Link></li>
             <li><Link href="/#faq" className="text-gray-300 hover:text-white transition-colors">{t("nav_faq")}</Link></li>
             <li><Link href="/#sharhlar" className="text-gray-300 hover:text-white transition-colors">{t("nav_reviews")}</Link></li>
             <li><Link href="/#aloqa" className="text-gray-300 hover:text-white transition-colors">{t("nav_contact")}</Link></li>

@@ -144,7 +144,7 @@ export function ReviewsSection() {
               {extendedReviews.map((item, i) => {
                 return (
                   <div key={i} className="w-full md:w-1/3 shrink-0 px-4">
-                    <motion.div 
+                    <motion.article 
                       whileHover={{ y: -10 }}
                       className="bg-white/80 backdrop-blur-xl border border-white/50 p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden h-full flex flex-col"
                     >
@@ -153,17 +153,17 @@ export function ReviewsSection() {
                       
                       <Quote className="absolute top-6 right-6 w-10 h-10 text-primary/10 rotate-12" />
                       
-                      <div className="flex gap-1 mb-6">
+                      <div className="flex gap-1 mb-6" aria-label={`Baho: 5 dan ${item.rating} yulduz`}>
                         {Array.from({ length: item.rating }).map((_, star) => (
                           <Star key={star} className="w-5 h-5 fill-yellow-400 text-yellow-400 drop-shadow-sm" />
                         ))}
                       </div>
                       
-                      <p className="text-foreground/80 text-lg mb-8 leading-relaxed font-medium relative z-10 italic flex-grow">
-                        "{item.review}"
-                      </p>
+                      <blockquote className="text-foreground/80 text-lg mb-8 leading-relaxed font-medium relative z-10 italic flex-grow">
+                        &ldquo;{item.review}&rdquo;
+                      </blockquote>
                       
-                      <div className="flex items-center gap-4 mt-auto">
+                      <footer className="flex items-center gap-4 mt-auto">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white font-bold shadow-md">
                           {item.name.charAt(0)}
                         </div>
@@ -171,8 +171,8 @@ export function ReviewsSection() {
                           <div className="font-bold text-foreground">{item.name}</div>
                           <div className="text-xs text-muted-foreground">{t("verified")}</div>
                         </div>
-                      </div>
-                    </motion.div>
+                      </footer>
+                    </motion.article>
                   </div>
                 );
               })}

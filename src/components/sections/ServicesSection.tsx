@@ -143,7 +143,7 @@ export function ServicesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayedServices.map((service, index) => (
-            <motion.div
+            <motion.article
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -161,9 +161,9 @@ export function ServicesSection() {
               <div className="relative w-full h-56 md:h-48 overflow-hidden bg-gray-100">
                 <Image 
                   src={service.image} 
-                  alt={service.title} 
+                  alt={`${service.title} - Express Clean Karcher, sentrifuga va gipoallergen eko shampun bilan dog'larni ketkazish va chuqur tozalash xizmati`} 
                   fill 
-                  priority={true}
+                  priority={index < 3}
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
@@ -203,7 +203,7 @@ export function ServicesSection() {
                   </RippleButton>
                 </a>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

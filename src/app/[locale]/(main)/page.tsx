@@ -10,7 +10,7 @@ const PromoSection = dynamic(() => import("@/components/sections/PromoSection").
 const HowItWorksSection = dynamic(() => import("@/components/sections/HowItWorksSection").then(m => m.HowItWorksSection));
 const BeforeAfterSlider = dynamic(() => import("@/components/sections/BeforeAfterSlider").then(m => m.BeforeAfterSlider));
 const ReviewsSection = dynamic(() => import("@/components/sections/ReviewsSection").then(m => m.ReviewsSection));
-const FaqSection = dynamic(() => import("@/components/sections/FaqSection").then(m => m.FaqSection));
+const FAQSection = dynamic(() => import("@/components/sections/FAQSection").then(m => m.FAQSection));
 const CalculatorSection = dynamic(() => import("@/components/sections/CalculatorSection").then(m => m.CalculatorSection));
 const ContactFormSection = dynamic(() => import("@/components/sections/ContactFormSection").then(m => m.ContactFormSection));
 
@@ -115,7 +115,7 @@ export default function Home() {
         <CalculatorSection />
         <BeforeAfterSlider />
         <ReviewsSection />
-        <FaqSection />
+        <FAQSection />
         <ContactFormSection />
       </div>
     </div>

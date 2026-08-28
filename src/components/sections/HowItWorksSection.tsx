@@ -65,7 +65,7 @@ export function HowItWorksSection() {
           <div className="hidden lg:block absolute top-10 left-[12%] right-[12%] h-0.5 bg-muted/50 -z-10"></div>
 
           {steps.map((step, index) => (
-            <motion.div
+            <motion.article
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -77,8 +77,8 @@ export function HowItWorksSection() {
                 {step.icon}
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">{index + 1}. {step.title}</h3>
-              <p className="text-muted-foreground text-sm">{step.description}</p>
-            </motion.div>
+              <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
+            </motion.article>
           ))}
         </div>
       </div>

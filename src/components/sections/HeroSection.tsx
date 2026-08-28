@@ -81,10 +81,11 @@ export function HeroSection() {
       <div className="absolute inset-0 -z-20 overflow-hidden">
          <Image 
            src="/hero-bg-v3.png" 
-           alt="Dirty background" 
+           alt="Toshkentda chang, kleshlar va dog'lar bilan qoplangan yuvilmagan gilam" 
            fill 
            priority
            className="object-cover sepia-[.5] brightness-75 contrast-75 blur-sm" 
+           sizes="100vw"
          />
          <div className="absolute inset-0 bg-[#8c7b66]/30 mix-blend-multiply" />
       </div>
@@ -96,10 +97,11 @@ export function HeroSection() {
       >
          <Image 
            src="/hero-bg-v3.png" 
-           alt="Clean background" 
+           alt="Karcher va sentrifuga uskunalarida eko shampun bilan tozalangan yangidek toza gilam" 
            fill 
            priority
            className="object-cover" 
+           sizes="100vw"
          />
          <div className="absolute inset-0 bg-gradient-to-b from-white/60 to-transparent" />
       </motion.div>

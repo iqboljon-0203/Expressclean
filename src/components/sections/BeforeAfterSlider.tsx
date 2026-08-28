@@ -57,12 +57,16 @@ export function BeforeAfterSlider() {
           )}
         </div>
 
-        <motion.div 
+        <motion.figure 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="max-w-4xl mx-auto"
         >
+          <figcaption className="sr-only">
+            Gilam yuvishdan oldingi va keyingi tozalik natijalari: kleshlar, chang va dog'lardan to'liq tozalangan holat
+          </figcaption>
+
           <div 
             className="relative w-full aspect-[4/3] md:aspect-video rounded-2xl overflow-hidden cursor-ew-resize shadow-premium"
             onMouseMove={handleDrag}
@@ -72,7 +76,7 @@ export function BeforeAfterSlider() {
             <div className="absolute inset-0 select-none">
               <Image 
                 src={imageAfter} 
-                alt="Toza gilam" 
+                alt="Express Clean sentrifuga, Karcher va eko shampun bilan tozalangan yangidek toza gilam" 
                 fill 
                 className="object-cover pointer-events-none" 
                 sizes="(max-width: 768px) 100vw, 1024px"
@@ -86,7 +90,7 @@ export function BeforeAfterSlider() {
             >
               <Image 
                 src={imageBefore} 
-                alt="Kir gilam" 
+                alt="Yuvishdan oldin kleshlar, chang va chuqur dog'lar bilan qoplangan kir gilam" 
                 fill 
                 className="object-cover pointer-events-none" 
                 sizes="(max-width: 768px) 100vw, 1024px"
@@ -111,7 +115,7 @@ export function BeforeAfterSlider() {
               {labelAfter}
             </div>
           </div>
-        </motion.div>
+        </motion.figure>
       </div>
     </section>
   );

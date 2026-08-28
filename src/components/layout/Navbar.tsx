@@ -16,6 +16,7 @@ export function Navbar({ phone = "+998 95 009 48 59" }: { phone?: string }) {
     { name: t("about"), href: "/about" },
     { name: t("services"), href: "/#xizmatlar" },
     { name: t("promo"), href: "/#aksiya" },
+    { name: t("blog"), href: "/blog" },
     { name: t("reviews"), href: "/#sharhlar" },
     { name: t("contact"), href: "/#aloqa" },
   ];

@@ -102,7 +102,7 @@ export function PromoSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {promos.map((promo, index) => (
-            <motion.div
+            <motion.article
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -111,13 +111,19 @@ export function PromoSection() {
               className="bg-white h-full rounded-2xl p-6 shadow-lg border border-amber-100 hover:shadow-xl transition-shadow flex flex-col items-center text-center group"
             >
               <div className="w-24 h-24 relative mb-4 group-hover:scale-110 transition-transform shrink-0">
-                <Image src={promo.image} alt="Icon" fill className="object-contain drop-shadow-md" />
+                <Image 
+                  src={promo.image} 
+                  alt={`Express Clean gilam yuvish aksiyasi - ${promo.text} (${promo.highlight})`} 
+                  fill 
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className="object-contain drop-shadow-md" 
+                />
               </div>
               <h3 className="text-gray-600 font-bold mb-4 text-sm uppercase tracking-wider leading-relaxed">{promo.text}</h3>
               <div className="mt-auto bg-gradient-to-r from-orange-500 to-amber-500 text-white font-extrabold px-3 py-2 rounded-xl text-[17px] w-full shadow-md hover:shadow-lg transition-shadow min-h-[4.5rem] flex items-center justify-center leading-tight">
                 {promo.highlight}
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
 
