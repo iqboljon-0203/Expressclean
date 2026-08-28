@@ -55,7 +55,7 @@ export const defaultSampleFAQs: FAQItem[] = [
   },
 ];
 
-export function FAQSection({
+export function FaqSection({
   title = "Ko'p beriladigan savollar",
   subtitle = "Gilam yuvish, dog'larni ketkazish, narxlar va yetkazib berish bo'yicha eng ko'p so'raladigan savollarga javoblar",
   items = defaultSampleFAQs,
@@ -190,5 +190,5 @@ export function FAQSection({
   );
 }
 
-export const FaqSection = FAQSection;
-export default FAQSection;
+export const FAQSection = FaqSection;
+export default FaqSection;
