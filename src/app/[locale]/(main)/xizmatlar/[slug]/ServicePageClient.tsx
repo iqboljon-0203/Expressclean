@@ -118,7 +118,7 @@ export function ServicePageClient({ service, locale }: ServicePageClientProps) {
                 className="flex flex-wrap gap-4"
               >
                 <a
-                  href="tel:+998950094859"
+                  href="tel:+998334060006"
                   className="inline-flex items-center gap-3 bg-primary hover:bg-primary-hover text-white font-semibold px-8 py-4 rounded-2xl transition-all hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5"
                 >
                   <Phone className="w-5 h-5" />
@@ -324,11 +324,11 @@ export function ServicePageClient({ service, locale }: ServicePageClientProps) {
 
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+998950094859"
+                href="tel:+998334060006"
                 className="inline-flex items-center gap-3 bg-white text-primary font-bold px-8 py-4 rounded-2xl hover:shadow-xl transition-all hover:-translate-y-0.5"
               >
                 <Phone className="w-5 h-5" />
-                +998 95 009 48 59
+                +998 33 406 00 06
               </a>
               <button
                 onClick={() =>

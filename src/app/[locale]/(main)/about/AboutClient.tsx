@@ -129,15 +129,15 @@ export function AboutClient({ initialData }: { initialData: any }) {
             <div className="bg-[#0f3460] text-white p-5 md:p-6 grid grid-cols-1 md:grid-cols-[1.5fr,1fr] gap-4 items-center relative overflow-hidden">
               <div className="absolute right-0 top-0 bottom-0 w-32 bg-white/5 skew-x-12 translate-x-8"></div>
               
-              <div className="flex items-center gap-4 relative z-10">
+              <a href="tel:+998334060006" className="flex items-center gap-4 relative z-10 hover:opacity-90 transition-opacity">
                 <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(var(--primary),0.5)]">
                   <PhoneCall className="w-5 h-5 text-white" />
                 </div>
                 <div>
                   <div className="text-[10px] md:text-xs text-blue-200 uppercase tracking-widest mb-0.5 font-bold">{getData("contactLabel")}</div>
-                  <div className="text-lg md:text-2xl font-black tracking-wide">+998 94 850 00 06</div>
+                  <div className="text-lg md:text-2xl font-black tracking-wide">+998 33 406 00 06</div>
                 </div>
-              </div>
+              </a>
               
               <div className="flex items-center gap-3 relative z-10 md:justify-end">
                 <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">

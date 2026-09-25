@@ -97,7 +97,7 @@ export default async function CityPage({ params }: Props) {
     description: cityData.longDescription[lang],
     image: `${baseUrl}/logo.png`,
     url: `${baseUrl}/${locale === "uz" ? "" : locale + "/"}hududlar/${city}`,
-    telephone: "+998950094859",
+    telephone: "+998334060006",
     email: "info@expressclean.uz",
     address: {
       "@type": "PostalAddress",

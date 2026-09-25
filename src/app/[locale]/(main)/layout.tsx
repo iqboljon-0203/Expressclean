@@ -14,7 +14,7 @@ export default async function MainLayout({
     .eq("id", 1)
     .single();
     
-  const phone = footerData?.phone || "+998 95 009 48 59";
+  const phone = footerData?.phone || "+998 33 406 00 06";
 
   return (
     <>

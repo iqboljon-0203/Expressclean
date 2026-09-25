@@ -184,7 +184,7 @@ export default async function RootLayout({
       "height": 600
     },
     "url": "https://expressclean.uz",
-    "telephone": "+998950094859",
+    "telephone": "+998334060006",
     "email": "info@expressclean.uz",
     "address": {
       "@type": "PostalAddress",

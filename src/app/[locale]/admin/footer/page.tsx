@@ -113,7 +113,7 @@ export default function AdminFooter() {
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               className="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary/20 outline-none"
-              placeholder="+998 94 850 00 06"
+              placeholder="+998 33 406 00 06"
             />
           </div>
 

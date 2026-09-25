@@ -91,7 +91,7 @@ export default async function ServicePage({ params }: Props) {
       "@type": "LocalBusiness",
       "@id": "https://expressclean.uz/#organization",
       name: "Express Clean",
-      telephone: "+998950094859",
+      telephone: "+998334060006",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Toshkent",

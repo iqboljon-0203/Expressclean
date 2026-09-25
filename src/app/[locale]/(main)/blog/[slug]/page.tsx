@@ -350,11 +350,11 @@ export default async function BlogPostPage({ params }: Props) {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="tel:+998950094859"
+                  href="tel:+998334060006"
                   className="inline-flex items-center gap-2 bg-white text-primary font-bold px-6 py-3.5 rounded-xl hover:shadow-lg transition-all"
                 >
                   <Phone className="w-4 h-4" />
-                  <span>+998 95 009 48 59</span>
+                  <span>+998 33 406 00 06</span>
                 </a>
                 <Link
                   href="/#contact"
